@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商流 · 供应商工作台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#1d2734;--muted:#75808d;--line:#e8eaed;--paper:#fff;--bg:#f6f7f8;--green:#167c63;--lime:#d9f36d;--orange:#f19a65;--red:#cf4f4c;--yellow:#fff4cd}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',Arial,sans-serif;font-size:14px}.shell{display:flex;min-height:100vh}.side{width:224px;background:#202a36;color:#e9eef1;padding:24px 14px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 34px;font-weight:700;font-size:18px;letter-spacing:.5px}.brand i{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--lime);color:#1b3441;font-style:normal;font-weight:700}.supplier{background:#2c3947;border-radius:10px;padding:12px;margin:0 4px 25px;display:flex;align-items:center;gap:9px}.avatar{width:30px;height:30px;border-radius:50%;background:#efb77e;display:grid;place-items:center;color:#603813;font-weight:700}.supplier b{display:block;font-size:12px}.supplier small{color:#a8b3bd;font-size:11px}.nav-title{color:#82909d;font-size:11px;padding:0 10px 8px;letter-spacing:1.2px}.nav a{display:flex;align-items:center;gap:12px;color:#afbac4;text-decoration:none;border-radius:8px;padding:11px 10px;margin:2px 0}.nav a.active{color:white;background:#3b4959;font-weight:600}.nav svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8}.side-bottom{margin-top:auto;border-top:1px solid #3a4652;padding:17px 10px 0;color:#aab5be;font-size:12px}.main{flex:1;padding:31px 38px 40px;min-width:0}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}.crumb{color:#8a949e;font-size:13px}.crumb b{color:#354150;font-weight:500}.top-right{display:flex;align-items:center;gap:15px}.date{font-family:'DM Mono';font-size:12px;color:#73808b}.bell{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:white}.dot{width:7px;height:7px;background:var(--orange);border-radius:50%;position:absolute;margin:-17px 0 0 16px}.headline{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.headline h1{font-size:25px;margin:0 0 5px;letter-spacing:.2px}.headline p{margin:0;color:var(--muted)}.new{background:var(--green);color:white;border:0;border-radius:7px;padding:11px 16px;font-family:inherit;font-weight:600;cursor:pointer;box-shadow:0 4px 10px #167c6326}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}.kpi{background:white;border:1px solid var(--line);border-radius:11px;padding:16px 18px;min-height:104px}.kpi label{display:block;color:#788491;font-size:12px;margin-bottom:12px}.kpi strong{font-size:25px;letter-spacing:-.5px}.kpi span{font-size:11px;margin-left:7px;color:var(--green);font-family:'DM Mono'}.kpi.alert strong{color:var(--red)}.kpi.alert span{color:var(--red)}.work{display:grid;grid-template-columns:minmax(490px,1.45fr) minmax(280px,.75fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:12px}.card-head{padding:18px 20px 14px;display:flex;align-items:center;justify-content:space-between}.card-head h2{font-size:15px;margin:0}.card-head span{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid var(--line)}.tabs button{background:none;border:0;padding:11px 0;color:#7b8791;font-family:inherit;cursor:pointer}.tabs button.active{color:var(--green);font-weight:600;border-bottom:2px solid var(--green)}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#8a949e;font-size:11px;font-weight:500;padding:13px 20px;border-bottom:1px solid var(--line)}td{padding:14px 20px;border-bottom:1px solid #f0f1f2;vertical-align:middle}tr:last-child td{border:0}.orderid{font-family:'DM Mono';font-size:12px;color:#586674}.product{font-weight:500}.meta{font-size:11px;color:#929ba3;margin-top:3px}.tag{font-size:11px;padding:4px 8px;border-radius:12px;white-space:nowrap}.late{background:#fff0ef;color:#bb4744}.progress{background:#e9f7f2;color:#15765f}.wait{background:#fff5db;color:#a87017}.voice{background:#273542;color:white;overflow:hidden;position:relative}.voice .card-head{padding-bottom:8px}.voice h2{color:white}.voice .card-head span{color:#afbbc2}.voice-body{padding:11px 20px 20px}.assistant-label{color:#b1bdc4;font-size:11px;letter-spacing:1px}.bubble{background:#354653;border-radius:8px 8px 8px 1px;padding:12px 13px;margin:8px 0 15px;line-height:1.65;font-size:13px}.voice-result{border-top:1px solid #42525e;padding-top:15px}.voice-result h3{font-size:13px;margin:0 0 9px}.mini-order{border:1px solid #455661;border-radius:8px;padding:10px;margin:8px 0;background:#2d3b47}.mini-order b{font-family:'DM Mono';font-size:12px;color:#dce5e9}.mini-order p{margin:4px 0 0;font-size:12px;color:#b6c1c8}.mini-order em{font-style:normal;color:#ffb384}.ask{margin-top:17px;border:1px solid #52626d;border-radius:8px;display:flex;align-items:center;padding:5px 6px 5px 12px}.ask input{flex:1;background:none;border:0;outline:0;color:white;font-family:inherit;font-size:12px;min-width:0}.ask input::placeholder{color:#9eabb4}.mic{width:29px;height:29px;border:0;border-radius:6px;background:var(--lime);color:#233642;cursor:pointer;font-size:15px}.ledger{margin-top:18px;padding:20px}.ledger h2{font-size:15px;margin:0 0 14px}.barrow{display:grid;grid-template-columns:100px 1fr 58px;gap:8px;align-items:center;margin:11px 0;font-size:12px}.barrow label{color:#63717d}.bar{height:7px;background:#edf0f1;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:#80cdb7;border-radius:10px}.barrow span{text-align:right;font-family:'DM Mono';font-size:11px;color:#697783}@media(max-width:1050px){.kpis{grid-template-columns:repeat(2,1fr)}.work{grid-template-columns:1fr}.voice{min-height:360px}}@media(max-width:700px){.side{width:61px;padding:20px 8px}.brand{padding:0 7px 28px}.brand span,.supplier div,.nav-title,.nav a span,.side-bottom{display:none}.supplier{padding:5px;margin:0 3px 22px}.main{padding:22px 16px}.headline{align-items:flex-start;gap:15px}.headline h1{font-size:21px}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.date{display:none}.work{grid-template-columns:minmax(0,1fr)}th:nth-child(3),td:nth-child(3){display:none}td,th{padding-left:12px;padding-right:12px}}
+
+    .voice-body{display:flex;flex-direction:column;min-height:535px}.chat-history{display:flex;flex-direction:column;gap:9px;max-height:292px;overflow:auto;padding-right:3px}.message{max-width:92%;padding:10px 12px;border-radius:9px;line-height:1.6;font-size:13px}.message.assistant{background:#354653;border-radius:9px 9px 9px 2px}.message.user{align-self:flex-end;background:#d9f36d;color:#243743;border-radius:9px 9px 2px 9px}.message p{margin:0}.reply-detail{margin-top:8px;color:#c0cbd1;font-size:12px}.preset-title{color:#b1bdc4;font-size:11px;letter-spacing:1px;margin:15px 0 8px}.presets{display:flex;flex-wrap:wrap;gap:7px}.preset{border:1px solid #53646f;background:#2d3b47;color:#d9e2e6;border-radius:7px;padding:7px 9px;font-family:inherit;font-size:11px;text-align:left;cursor:pointer}.preset:hover{border-color:#d9f36d;color:#fff}.ask{margin-top:auto}.ask form{display:flex;width:100%;align-items:center;gap:6px}.ask input{width:100%}.send{width:29px;height:29px;border:0;border-radius:6px;background:#d9f36d;color:#233642;cursor:pointer;font-size:15px;line-height:1}.send:disabled{opacity:.5;cursor:not-allowed}.mic{background:#53646f;color:#fff}.mic.recording{background:#d25551;animation:pulse 1s infinite}.speech-status{min-height:17px;color:#b1bdc4;font-size:11px;margin-top:7px}.speech-status.error{color:#ffb384}@keyframes pulse{50%{transform:scale(1.08)}}
+  </style>
+</head>
+<body><div class="shell">
+<aside class="side"><div class="brand"><i>商</i><span>商流供应链</span></div><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v2.4.0</span></div></aside>
+<main class="main"><header class="top"><div class="crumb">供应商中心&nbsp; / &nbsp;<b>工作台</b></div><div class="top-right"><span class="date">2025. 04. 18 · 星期五</span><div class="bell">♧<i class="dot"></i></div></div></header>
+<section class="headline"><div><h1>早上好，禾木家居</h1><p>这里是今天的经营概况，3 个待处理事项需要你的关注。</p></div><button class="new" onclick="alert('已为你打开新商品录入表单')">＋ 新建商品</button></section>
+<section class="kpis"><div class="kpi"><label>今日待发货订单</label><strong>24</strong><span>+ 8.2%</span></div><div class="kpi alert"><label>即将超时订单</label><strong>03</strong><span>需优先处理</span></div><div class="kpi"><label>在售商品</label><strong>128</strong><span>+ 4 本周</span></div><div class="kpi"><label>本月结算金额</label><strong>¥86,240</strong><span>+ 12.4%</span></div></section>
+<section class="work"><div><article class="card"><div class="card-head"><h2>订单待办</h2><span>查看全部 →</span></div><div class="tabs"><button class="active">待处理 <b>24</b></button><button>即将超时 <b>03</b></button><button>售后中 <b>02</b></button></div><table><thead><tr><th>订单号</th><th>商品信息</th><th>剩余时间</th><th>状态</th></tr></thead><tbody><tr><td class="orderid">SO-250418-1023</td><td><div class="product">北欧原木餐椅 · 胡桃木</div><div class="meta">x 2 · 李**</div></td><td style="color:#c64e48;font-family:DM Mono">01:18:42</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0988</td><td><div class="product">简约实木书桌 1.2m</div><div class="meta">x 1 · 陈**</div></td><td style="color:#c64e48;font-family:DM Mono">03:42:11</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0947</td><td><div class="product">藤编收纳篮 · 大号</div><div class="meta">x 3 · 王**</div></td><td style="font-family:DM Mono">08:26:35</td><td><span class="tag wait">待发货</span></td></tr><tr><td class="orderid">SO-250417-0812</td><td><div class="product">云朵靠垫套 · 米白</div><div class="meta">x 2 · 刘**</div></td><td style="font-family:DM Mono">12:10:08</td><td><span class="tag progress">拣货中</span></td></tr></tbody></table></article><article class="card ledger"><h2>本周履约表现</h2><div class="barrow"><label>准时发货率</label><div class="bar"><i style="width:96%"></i></div><span>96.2%</span></div><div class="barrow"><label>商品好评率</label><div class="bar"><i style="width:94%"></i></div><span>94.7%</span></div><div class="barrow"><label>售后响应率</label><div class="bar"><i style="width:88%"></i></div><span>88.0%</span></div></article></div>
+<aside class="voice" aria-label="小商语音助手">
+  <div class="card-head"><h2>小商 · 语音助手</h2><span>● 在线</span></div>
+  <div class="voice-body">
+    <div class="chat-history" id="chatHistory" aria-live="polite">
+      <div class="message user">我还有哪些订单超时了？</div>
+      <div class="message assistant"><p>为你找到 3 笔即将超时订单：</p><p class="reply-detail">SO-250418-1023（01:18:42）、SO-250418-0988（03:42:11）和 SO-250418-0901（05:06:29）。建议优先处理前两笔。</p></div>
+    </div>
+    <div class="preset-title">快捷提问</div>
+    <div class="presets" aria-label="预设问题">
+      <button class="preset" type="button" data-question="我还有哪些订单超时了？">查看超时订单</button>
+      <button class="preset" type="button" data-question="今天有哪些待发货订单？">今日待发货</button>
+      <button class="preset" type="button" data-question="在售商品有多少？">查看商品库存</button>
+    </div>
+    <div class="ask">
+      <form id="assistantForm">
+        <input id="assistantInput" aria-label="向小商提问" autocomplete="off" placeholder="输入问题后按回车发送…">
+        <button class="mic" id="micButton" type="button" title="语音转文字" aria-label="开始语音转文字">🎤</button>
+        <button class="send" id="sendButton" type="submit" title="发送" aria-label="发送">↑</button>
+      </form>
+      <div class="speech-status" id="speechStatus" role="status"></div>
+    </div>
+  </div>
+</aside></section>
+</main></div><script>
+  (() => {
+    const form = document.getElementById('assistantForm');
+    const input = document.getElementById('assistantInput');
+    const history = document.getElementById('chatHistory');
+    const micButton = document.getElementById('micButton');
+    const status = document.getElementById('speechStatus');
+    const presets = document.querySelectorAll('.preset');
+
+    function addMessage(text, role, html = '') {
+      const message = document.createElement('div');
+      message.className = `message ${role}`;
+      if (html) message.innerHTML = html;
+      else message.textContent = text;
+      history.appendChild(message);
+      history.scrollTop = history.scrollHeight;
+    }
+
+    function replyFor(question) {
+      if (/超时|逾期|订单/.test(question)) {
+        return '<p>目前有 3 笔订单需要优先关注。</p><p class="reply-detail">SO-250418-1023 还剩 01:18:42；SO-250418-0988 还剩 03:42:11。其余待发订单均在履约时限内。</p>';
+      }
+      if (/商品|库存|在售|创建/.test(question)) {
+        return '<p>当前共有 128 个在售商品，本周新增 4 个。</p><p class="reply-detail">原木餐椅和藤编收纳篮库存充足；如需录入商品，可点击页面右上角“新建商品”。</p>';
+      }
+      return '<p>我已查看当前工作台数据。</p><p class="reply-detail">今天有 24 笔待发货订单、3 笔即将超时订单；本月结算金额为 ¥86,240。</p>';
+    }
+
+    function sendMessage(question = input.value.trim()) {
+      if (!question) {
+        input.focus();
+        return;
+      }
+      addMessage(question, 'user');
+      input.value = '';
+      window.setTimeout(() => addMessage('', 'assistant', replyFor(question)), 2000);
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      sendMessage();
+    });
+    presets.forEach(button => button.addEventListener('click', () => sendMessage(button.dataset.question)));
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      micButton.hidden = true;
+      status.textContent = '当前浏览器不支持语音输入，请使用文字提问。';
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'zh-CN';
+    recognition.interimResults = false;
+    recognition.continuous = false;
+    let listening = false;
+
+    recognition.onstart = () => {
+      listening = true;
+      micButton.classList.add('recording');
+      micButton.setAttribute('aria-label', '停止语音转文字');
+      status.textContent = '正在聆听，再次点击麦克风即可停止。';
+    };
+    recognition.onresult = event => {
+      input.value = event.results[0][0].transcript;
+      status.textContent = '已识别文字，请确认后发送。';
+      input.focus();
+    };
+    recognition.onerror = () => {
+      status.textContent = '未能识别语音，请重试或使用文字提问。';
+      status.classList.add('error');
+    };
+    recognition.onend = () => {
+      listening = false;
+      micButton.classList.remove('recording');
+      micButton.setAttribute('aria-label', '开始语音转文字');
+    };
+    micButton.addEventListener('click', () => {
+      status.classList.remove('error');
+      if (listening) recognition.stop();
+      else recognition.start();
+    });
+  })();
+</script></body></html>
