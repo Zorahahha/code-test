@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>商流 · 供应商工作台</title>
+  <title>供应商工作台</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,16 +12,18 @@
     *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',Arial,sans-serif;font-size:14px}.shell{display:flex;min-height:100vh}.side{width:224px;background:#202a36;color:#e9eef1;padding:24px 14px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 34px;font-weight:700;font-size:18px;letter-spacing:.5px}.brand i{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--lime);color:#1b3441;font-style:normal;font-weight:700}.supplier{background:#2c3947;border-radius:10px;padding:12px;margin:0 4px 25px;display:flex;align-items:center;gap:9px}.avatar{width:30px;height:30px;border-radius:50%;background:#efb77e;display:grid;place-items:center;color:#603813;font-weight:700}.supplier b{display:block;font-size:12px}.supplier small{color:#a8b3bd;font-size:11px}.nav-title{color:#82909d;font-size:11px;padding:0 10px 8px;letter-spacing:1.2px}.nav a{display:flex;align-items:center;gap:12px;color:#afbac4;text-decoration:none;border-radius:8px;padding:11px 10px;margin:2px 0}.nav a.active{color:white;background:#3b4959;font-weight:600}.nav svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8}.side-bottom{margin-top:auto;border-top:1px solid #3a4652;padding:17px 10px 0;color:#aab5be;font-size:12px}.main{flex:1;padding:31px 38px 40px;min-width:0}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}.crumb{color:#8a949e;font-size:13px}.crumb b{color:#354150;font-weight:500}.top-right{display:flex;align-items:center;gap:15px}.date{font-family:'DM Mono';font-size:12px;color:#73808b}.bell{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:white}.dot{width:7px;height:7px;background:var(--orange);border-radius:50%;position:absolute;margin:-17px 0 0 16px}.headline{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.headline h1{font-size:25px;margin:0 0 5px;letter-spacing:.2px}.headline p{margin:0;color:var(--muted)}.new{background:var(--green);color:white;border:0;border-radius:7px;padding:11px 16px;font-family:inherit;font-weight:600;cursor:pointer;box-shadow:0 4px 10px #167c6326}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}.kpi{background:white;border:1px solid var(--line);border-radius:11px;padding:16px 18px;min-height:104px}.kpi label{display:block;color:#788491;font-size:12px;margin-bottom:12px}.kpi strong{font-size:25px;letter-spacing:-.5px}.kpi span{font-size:11px;margin-left:7px;color:var(--green);font-family:'DM Mono'}.kpi.alert strong{color:var(--red)}.kpi.alert span{color:var(--red)}.work{display:grid;grid-template-columns:minmax(490px,1.45fr) minmax(280px,.75fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:12px}.card-head{padding:18px 20px 14px;display:flex;align-items:center;justify-content:space-between}.card-head h2{font-size:15px;margin:0}.card-head span{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid var(--line)}.tabs button{background:none;border:0;padding:11px 0;color:#7b8791;font-family:inherit;cursor:pointer}.tabs button.active{color:var(--green);font-weight:600;border-bottom:2px solid var(--green)}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#8a949e;font-size:11px;font-weight:500;padding:13px 20px;border-bottom:1px solid var(--line)}td{padding:14px 20px;border-bottom:1px solid #f0f1f2;vertical-align:middle}tr:last-child td{border:0}.orderid{font-family:'DM Mono';font-size:12px;color:#586674}.product{font-weight:500}.meta{font-size:11px;color:#929ba3;margin-top:3px}.tag{font-size:11px;padding:4px 8px;border-radius:12px;white-space:nowrap}.late{background:#fff0ef;color:#bb4744}.progress{background:#e9f7f2;color:#15765f}.wait{background:#fff5db;color:#a87017}.voice{background:#273542;color:white;overflow:hidden;position:relative}.voice .card-head{padding-bottom:8px}.voice h2{color:white}.voice .card-head span{color:#afbbc2}.voice-body{padding:11px 20px 20px}.assistant-label{color:#b1bdc4;font-size:11px;letter-spacing:1px}.bubble{background:#354653;border-radius:8px 8px 8px 1px;padding:12px 13px;margin:8px 0 15px;line-height:1.65;font-size:13px}.voice-result{border-top:1px solid #42525e;padding-top:15px}.voice-result h3{font-size:13px;margin:0 0 9px}.mini-order{border:1px solid #455661;border-radius:8px;padding:10px;margin:8px 0;background:#2d3b47}.mini-order b{font-family:'DM Mono';font-size:12px;color:#dce5e9}.mini-order p{margin:4px 0 0;font-size:12px;color:#b6c1c8}.mini-order em{font-style:normal;color:#ffb384}.ask{margin-top:17px;border:1px solid #52626d;border-radius:8px;display:flex;align-items:center;padding:5px 6px 5px 12px}.ask input{flex:1;background:none;border:0;outline:0;color:white;font-family:inherit;font-size:12px;min-width:0}.ask input::placeholder{color:#9eabb4}.mic{width:29px;height:29px;border:0;border-radius:6px;background:var(--lime);color:#233642;cursor:pointer;font-size:15px}.ledger{margin-top:18px;padding:20px}.ledger h2{font-size:15px;margin:0 0 14px}.barrow{display:grid;grid-template-columns:100px 1fr 58px;gap:8px;align-items:center;margin:11px 0;font-size:12px}.barrow label{color:#63717d}.bar{height:7px;background:#edf0f1;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:#80cdb7;border-radius:10px}.barrow span{text-align:right;font-family:'DM Mono';font-size:11px;color:#697783}@media(max-width:1050px){.kpis{grid-template-columns:repeat(2,1fr)}.work{grid-template-columns:1fr}.voice{min-height:360px}}@media(max-width:700px){.side{width:61px;padding:20px 8px}.brand{padding:0 7px 28px}.brand span,.supplier div,.nav-title,.nav a span,.side-bottom{display:none}.supplier{padding:5px;margin:0 3px 22px}.main{padding:22px 16px}.headline{align-items:flex-start;gap:15px}.headline h1{font-size:21px}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.date{display:none}.work{grid-template-columns:minmax(0,1fr)}th:nth-child(3),td:nth-child(3){display:none}td,th{padding-left:12px;padding-right:12px}}
 
     .voice-body{display:flex;flex-direction:column;min-height:535px}.chat-history{display:flex;flex-direction:column;gap:9px;max-height:292px;overflow:auto;padding-right:3px}.message{max-width:92%;padding:10px 12px;border-radius:9px;line-height:1.6;font-size:13px}.message.assistant{background:#354653;border-radius:9px 9px 9px 2px}.message.user{align-self:flex-end;background:#d9f36d;color:#243743;border-radius:9px 9px 2px 9px}.message p{margin:0}.reply-detail{margin-top:8px;color:#c0cbd1;font-size:12px}.preset-title{color:#b1bdc4;font-size:11px;letter-spacing:1px;margin:15px 0 8px}.presets{display:flex;flex-wrap:wrap;gap:7px}.preset{border:1px solid #53646f;background:#2d3b47;color:#d9e2e6;border-radius:7px;padding:7px 9px;font-family:inherit;font-size:11px;text-align:left;cursor:pointer}.preset:hover{border-color:#d9f36d;color:#fff}.ask{margin-top:auto}.ask form{display:flex;width:100%;align-items:center;gap:6px}.ask input{width:100%}.send{width:29px;height:29px;border:0;border-radius:6px;background:#d9f36d;color:#233642;cursor:pointer;font-size:15px;line-height:1}.send:disabled{opacity:.5;cursor:not-allowed}.mic{background:#53646f;color:#fff}.mic.recording{background:#d25551;animation:pulse 1s infinite}.speech-status{min-height:17px;color:#b1bdc4;font-size:11px;margin-top:7px}.speech-status.error{color:#ffb384}@keyframes pulse{50%{transform:scale(1.08)}}.thinking{color:#c0cbd1;font-size:12px;letter-spacing:1px}.thinking span{display:inline-block;animation:blink 1.2s infinite}.thinking span:nth-child(2){animation-delay:.2s}.thinking span:nth-child(3){animation-delay:.4s}@keyframes blink{50%{opacity:.25}}
+
+    .view[hidden]{display:none}.products-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 24px}.products-head h1{font-size:25px;margin:0 0 5px}.products-head p{margin:0;color:var(--muted)}.product-table{overflow:hidden}.product-table table{min-width:720px}.actions{display:flex;gap:8px}.text-button{border:0;background:transparent;color:var(--green);font-family:inherit;cursor:pointer;padding:2px}.text-button.delete{color:var(--red)}.empty-view{padding:52px 24px;text-align:center;color:var(--muted)}.modal-backdrop{position:fixed;inset:0;background:#17212bb3;display:grid;place-items:center;padding:20px;z-index:10}.modal-backdrop[hidden]{display:none}.modal{width:min(520px,100%);background:#fff;border-radius:13px;box-shadow:0 20px 60px #10182066}.modal header{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal h2{font-size:17px;margin:0}.close{border:0;background:transparent;font-size:22px;color:#65727e;cursor:pointer}.product-form{padding:20px 22px}.field{margin-bottom:15px}.field label{display:block;font-size:12px;font-weight:600;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid #dce1e4;border-radius:7px;padding:10px;font:inherit;color:var(--ink);outline-color:var(--green)}.field.error input,.field.error select{border-color:var(--red)}.error-text{min-height:15px;margin-top:4px;color:var(--red);font-size:11px}.modal-footer{display:flex;justify-content:flex-end;gap:9px;padding-top:5px}.secondary{border:1px solid #dce1e4;background:#fff;color:#52606d;border-radius:7px;padding:10px 15px;font-family:inherit;cursor:pointer}.product-status{background:#e9f7f2;color:#15765f}.product-status.off{background:#f2f3f4;color:#79848c}@media(max-width:700px){.products-head{align-items:flex-start;gap:14px}.products-head h1{font-size:21px}.product-table{overflow-x:auto}}
   </style>
 </head>
 <body><div class="shell">
-<aside class="side"><div class="brand"><i>商</i><span>商流供应链</span></div><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v2.4.0</span></div></aside>
+<aside class="side"><div class="brand"><i>商</i><span>商流供应链</span></div><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#" data-view="dashboard"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#" data-view="products"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#" data-view="orders"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#" data-view="analytics"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v2.4.0</span></div></aside>
 <main class="main"><header class="top"><div class="crumb">供应商中心&nbsp; / &nbsp;<b>工作台</b></div><div class="top-right"><span class="date">2025. 04. 18 · 星期五</span><div class="bell">♧<i class="dot"></i></div></div></header>
-<section class="headline"><div><h1>早上好，禾木家居</h1><p>这里是今天的经营概况，3 个待处理事项需要你的关注。</p></div><button class="new" onclick="alert('已为你打开新商品录入表单')">＋ 新建商品</button></section>
+<section class="view" id="dashboardView"><section class="headline"><div><h1>早上好，禾木家居</h1><p>这里是今天的经营概况，3 个待处理事项需要你的关注。</p></div><button class="new" id="newProductButton" type="button">＋ 新建商品</button></section>
 <section class="kpis"><div class="kpi"><label>今日待发货订单</label><strong>24</strong><span>+ 8.2%</span></div><div class="kpi alert"><label>即将超时订单</label><strong>03</strong><span>需优先处理</span></div><div class="kpi"><label>在售商品</label><strong>128</strong><span>+ 4 本周</span></div><div class="kpi"><label>本月结算金额</label><strong>¥86,240</strong><span>+ 12.4%</span></div></section>
 <section class="work"><div><article class="card"><div class="card-head"><h2>订单待办</h2><span>查看全部 →</span></div><div class="tabs"><button class="active">待处理 <b>24</b></button><button>即将超时 <b>03</b></button><button>售后中 <b>02</b></button></div><table><thead><tr><th>订单号</th><th>商品信息</th><th>剩余时间</th><th>状态</th></tr></thead><tbody><tr><td class="orderid">SO-250418-1023</td><td><div class="product">北欧原木餐椅 · 胡桃木</div><div class="meta">x 2 · 李**</div></td><td style="color:#c64e48;font-family:DM Mono">01:18:42</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0988</td><td><div class="product">简约实木书桌 1.2m</div><div class="meta">x 1 · 陈**</div></td><td style="color:#c64e48;font-family:DM Mono">03:42:11</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0947</td><td><div class="product">藤编收纳篮 · 大号</div><div class="meta">x 3 · 王**</div></td><td style="font-family:DM Mono">08:26:35</td><td><span class="tag wait">待发货</span></td></tr><tr><td class="orderid">SO-250417-0812</td><td><div class="product">云朵靠垫套 · 米白</div><div class="meta">x 2 · 刘**</div></td><td style="font-family:DM Mono">12:10:08</td><td><span class="tag progress">拣货中</span></td></tr></tbody></table></article><article class="card ledger"><h2>本周履约表现</h2><div class="barrow"><label>准时发货率</label><div class="bar"><i style="width:96%"></i></div><span>96.2%</span></div><div class="barrow"><label>商品好评率</label><div class="bar"><i style="width:94%"></i></div><span>94.7%</span></div><div class="barrow"><label>售后响应率</label><div class="bar"><i style="width:88%"></i></div><span>88.0%</span></div></article></div>
 <aside class="voice" aria-label="小商语音助手">
-  <div class="card-head"><h2>小商 · 语音助手</h2><span>● 在线</span></div>
+  <div class="card-head"><h2>小商</h2><span>● 在线</span></div>
   <div class="voice-body">
     <div class="chat-history" id="chatHistory" aria-live="polite">
       <div class="message user">我还有哪些订单超时了？</div>
@@ -42,8 +44,15 @@
       <div class="speech-status" id="speechStatus" role="status"></div>
     </div>
   </div>
-</aside></section>
-</main></div><script>
+</aside></section></section>
+<section class="view" id="productsView" hidden>
+  <div class="products-head"><div><h1>商品管理</h1><p>维护商品信息、库存和销售状态。</p></div><button class="new" id="productsNewButton" type="button">＋ 新建商品</button></div>
+  <article class="card product-table"><table><thead><tr><th>商品名称</th><th>规格</th><th>单价</th><th>库存</th><th>分类</th><th>状态</th><th>操作</th></tr></thead><tbody id="productRows"></tbody></table></article>
+</section>
+<section class="view" id="ordersView" hidden><article class="card empty-view"><h2>订单管理</h2><p>订单待办已在工作台首页展示，可通过左侧工作台查看。</p></article></section>
+<section class="view" id="analyticsView" hidden><article class="card empty-view"><h2>经营分析</h2><p>本周履约表现已在工作台首页展示。</p></article></section>
+</main></div>
+<div class="modal-backdrop" id="productModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><header><h2 id="modalTitle">新建商品</h2><button class="close" id="closeModal" type="button" aria-label="关闭">×</button></header><form class="product-form" id="productForm" novalidate><div class="field"><label for="productName">商品名称</label><input id="productName" name="name" required><div class="error-text"></div></div><div class="field"><label for="productSpec">规格</label><input id="productSpec" name="spec" required placeholder="例如：胡桃木 / 45 × 52 cm"><div class="error-text"></div></div><div class="field"><label for="productPrice">单价（元）</label><input id="productPrice" name="price" type="number" min="0.01" step="0.01" required><div class="error-text"></div></div><div class="field"><label for="productStock">库存数量</label><input id="productStock" name="stock" type="number" min="0" step="1" required><div class="error-text"></div></div><div class="field"><label for="productCategory">商品分类</label><select id="productCategory" name="category" required><option value="">请选择分类</option><option>客厅家具</option><option>餐厅家具</option><option>卧室用品</option><option>收纳用品</option><option>软装饰品</option></select><div class="error-text"></div></div><div class="modal-footer"><button class="secondary" id="cancelModal" type="button">取消</button><button class="new" type="submit">保存商品</button></div></form></div></div><script>
   (() => {
     const form = document.getElementById('assistantForm');
     const input = document.getElementById('assistantInput');
@@ -51,6 +60,67 @@
     const micButton = document.getElementById('micButton');
     const status = document.getElementById('speechStatus');
     const presets = document.querySelectorAll('.preset');
+    const navLinks = document.querySelectorAll('.nav a[data-view]');
+    const views = document.querySelectorAll('.view');
+    const productRows = document.getElementById('productRows');
+    const productModal = document.getElementById('productModal');
+    const productForm = document.getElementById('productForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const productCount = document.querySelector('.kpi:nth-child(3) strong');
+    let editingProductId = null;
+    let products = [
+      { id: 1, name: '北欧原木餐椅', spec: '胡桃木 / 45 × 52 cm', price: 369, stock: 46, category: '餐厅家具', status: '在售' },
+      { id: 2, name: '简约实木书桌', spec: '1.2 m / 橡木', price: 1299, stock: 18, category: '客厅家具', status: '在售' },
+      { id: 3, name: '藤编收纳篮', spec: '大号 / 自然色', price: 89, stock: 75, category: '收纳用品', status: '在售' },
+      { id: 4, name: '云朵靠垫套', spec: '45 × 45 cm / 米白', price: 49, stock: 120, category: '软装饰品', status: '在售' },
+      { id: 5, name: '磨砂玻璃花瓶', spec: '30 cm / 烟灰', price: 129, stock: 32, category: '软装饰品', status: '在售' },
+      { id: 6, name: '棉麻床品四件套', spec: '1.8 m / 燕麦色', price: 459, stock: 25, category: '卧室用品', status: '在售' },
+      { id: 7, name: '黄铜壁灯', spec: '单头 / 暖光', price: 279, stock: 9, category: '客厅家具', status: '下架' },
+      { id: 8, name: '原木衣帽架', spec: '175 cm / 榉木', price: 299, stock: 14, category: '收纳用品', status: '在售' },
+      { id: 9, name: '羊毛地毯', spec: '160 × 230 cm / 浅灰', price: 699, stock: 11, category: '软装饰品', status: '在售' }
+    ];
+
+    function renderProducts() {
+      productRows.innerHTML = products.map(product => `<tr><td class="product">${product.name}</td><td>${product.spec}</td><td>¥${Number(product.price).toFixed(2)}</td><td>${product.stock}</td><td>${product.category}</td><td><span class="tag product-status ${product.status === '下架' ? 'off' : ''}">${product.status}</span></td><td><div class="actions"><button class="text-button" type="button" data-action="edit" data-id="${product.id}">编辑</button><button class="text-button delete" type="button" data-action="delete" data-id="${product.id}">删除</button></div></td></tr>`).join('');
+      productCount.textContent = products.filter(product => product.status === '在售').length;
+    }
+
+    function showView(viewName) {
+      views.forEach(view => { view.hidden = view.id !== `${viewName}View`; });
+      navLinks.forEach(link => link.classList.toggle('active', link.dataset.view === viewName));
+    }
+
+    function clearErrors() { productForm.querySelectorAll('.field').forEach(field => { field.classList.remove('error'); field.querySelector('.error-text').textContent = ''; }); }
+    function openProductModal(product = null) {
+      editingProductId = product?.id ?? null;
+      modalTitle.textContent = product ? '编辑商品' : '新建商品';
+      productForm.reset(); clearErrors();
+      if (product) Object.entries(product).forEach(([key, value]) => { if (productForm.elements[key]) productForm.elements[key].value = value; });
+      productModal.hidden = false; document.getElementById('productName').focus();
+    }
+    function closeProductModal() { productModal.hidden = true; }
+
+    navLinks.forEach(link => link.addEventListener('click', event => { event.preventDefault(); showView(link.dataset.view); }));
+    document.getElementById('newProductButton').addEventListener('click', () => openProductModal());
+    document.getElementById('productsNewButton').addEventListener('click', () => openProductModal());
+    document.getElementById('closeModal').addEventListener('click', closeProductModal);
+    document.getElementById('cancelModal').addEventListener('click', closeProductModal);
+    productModal.addEventListener('click', event => { if (event.target === productModal) closeProductModal(); });
+    productRows.addEventListener('click', event => {
+      const button = event.target.closest('button[data-action]'); if (!button) return;
+      const id = Number(button.dataset.id); const product = products.find(item => item.id === id);
+      if (button.dataset.action === 'edit') openProductModal(product);
+      if (button.dataset.action === 'delete' && product && window.confirm(`确认删除「${product.name}」吗？`)) { products = products.filter(item => item.id !== id); renderProducts(); }
+    });
+    productForm.addEventListener('submit', event => {
+      event.preventDefault(); clearErrors(); const data = Object.fromEntries(new FormData(productForm)); let valid = true;
+      ['name', 'spec', 'price', 'stock', 'category'].forEach(key => { const field = productForm.elements[key]; if (!String(data[key]).trim() || (key === 'price' && Number(data[key]) <= 0) || (key === 'stock' && Number(data[key]) < 0)) { const container = field.closest('.field'); container.classList.add('error'); container.querySelector('.error-text').textContent = key === 'price' ? '请输入大于 0 的单价' : key === 'stock' ? '请输入有效库存数量' : '此项为必填项'; valid = false; } });
+      if (!valid) return;
+      const product = { id: editingProductId ?? Date.now(), name: data.name.trim(), spec: data.spec.trim(), price: Number(data.price), stock: Number(data.stock), category: data.category, status: '在售' };
+      if (editingProductId) products = products.map(item => item.id === editingProductId ? { ...item, ...product, status: products.find(old => old.id === editingProductId).status } : item); else products.unshift(product);
+      renderProducts(); closeProductModal(); showView('products');
+    });
+    renderProducts();
 
     function scrollToLatest() {
       history.scrollTop = history.scrollHeight;
@@ -70,7 +140,8 @@
         return '<p>目前有 3 笔订单需要优先关注。</p><p class="reply-detail">SO-250418-1023 还剩 01:18:42；SO-250418-0988 还剩 03:42:11。其余待发订单均在履约时限内。</p>';
       }
       if (/商品|库存|在售|创建/.test(question)) {
-        return '<p>当前共有 128 个在售商品，本周新增 4 个。</p><p class="reply-detail">原木餐椅和藤编收纳篮库存充足；如需录入商品，可点击页面右上角“新建商品”。</p>';
+        const activeProducts = products.filter(product => product.status === '在售').length;
+        return `<p>当前共有 ${activeProducts} 个在售商品。</p><p class="reply-detail">原木餐椅和藤编收纳篮库存充足；如需录入商品，可点击页面右上角“新建商品”。</p>`;
       }
       return '<p>我已查看当前工作台数据。</p><p class="reply-detail">今天有 24 笔待发货订单、3 笔即将超时订单；本月结算金额为 ¥86,240。</p>';
     }
