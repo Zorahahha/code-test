@@ -167,7 +167,7 @@
       const onTimeRate=shipped.length?shipped.filter(o=>o.isOnTime===true).length/shipped.length*100:0;
       const rated=orders.filter(o=>o.rating!==null&&o.rating!==undefined&&Number.isFinite(Number(o.rating))&&o.rating!=="");
       const ratingRate=rated.length?rated.filter(o=>Number(o.rating)>=4).length/rated.length*100:0;
-      const service=orders.filter(o=>o.type==="service"&&inThisWeek(o));
+      const service=orders.filter(o=>{const d=new Date(o.createdAt);return o.type==="service"&&d>=weekStart&&d<=now;});
       const responseRate=service.length?service.filter(o=>Boolean(o.serviceRespondedAt)).length/service.length*100:0;
       const update=(barId,valueId,targetId,rate)=>{const bar=document.getElementById(barId),value=document.getElementById(valueId),target=document.getElementById(targetId);bar.style.width=`${rate}%`;bar.classList.toggle("low",rate<95);value.textContent=`${rate.toFixed(1)}%`;value.style.color=rate<95?"#a66b00":"";target.hidden=rate>=95;};
       update("onTimeRateBar","onTimeRateValue","onTimeRateTarget",onTimeRate);update("ratingRateBar","ratingRateValue","ratingRateTarget",ratingRate);update("afterSalesRateBar","afterSalesRateValue","afterSalesRateTarget",responseRate);
