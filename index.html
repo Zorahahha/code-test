@@ -131,7 +131,7 @@
       const button = event.target.closest('button[data-action]'); if (!button) return;
       const id = Number(button.dataset.id); const product = products.find(item => item.id === id);
       if (button.dataset.action === 'edit') openProductModal(product);
-      if (button.dataset.action === 'delete' && product && window.confirm(`确认删除「${product.name}」吗？`)) { products = products.filter(item => item.id !== id); renderProducts(); }
+      if (button.dataset.action === 'delete' && product && window.confirm(`确认删除「${product.name}」吗？`)) { products = products.filter(item => item.id !== id); renderProducts(); renderKpis(); renderCharts(); }
     });
     productForm.addEventListener('submit', event => {
       event.preventDefault(); clearErrors(); const data = Object.fromEntries(new FormData(productForm)); let valid = true;
