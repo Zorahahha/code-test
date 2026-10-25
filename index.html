@@ -20,16 +20,16 @@
 </head>
 <body><div class="shell">
 <aside class="side"><div class="brand"><i>商</i><span>商流供应链</span></div><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#" data-view="dashboard"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#" data-view="products"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#" data-view="orders"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#" data-view="analytics"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v2.4.0</span></div></aside>
-<main class="main"><header class="top"><div class="crumb">供应商中心&nbsp; / &nbsp;<b>工作台</b></div><div class="top-right"><span class="date">2025. 04. 18 · 星期五</span><div class="bell">♧<i class="dot"></i></div></div></header>
+<main class="main"><header class="top"><div class="crumb">供应商中心&nbsp; / &nbsp;<b>工作台</b></div><div class="top-right"><span class="date" id="currentDate"></span><div class="bell">♧<i class="dot"></i></div></div></header>
 <section class="view" id="dashboardView"><section class="headline"><div><h1>早上好，禾木家居</h1><p>这里是今天的经营概况，3 个待处理事项需要你的关注。</p></div><button class="new" id="newProductButton" type="button">＋ 新建商品</button></section>
-<section class="kpis"><div class="kpi"><label>今日待发货订单</label><strong>24</strong><span>+ 8.2%</span></div><div class="kpi alert"><label>即将超时订单</label><strong>03</strong><span>需优先处理</span></div><div class="kpi"><label>在售商品</label><strong>128</strong><span>+ 4 本周</span></div><div class="kpi"><label>本月结算金额</label><strong>¥86,240</strong><span>+ 12.4%</span></div></section>
-<section class="work"><div><article class="card"><div class="card-head"><h2>订单待办</h2><span>查看全部 →</span></div><div class="tabs"><button class="active">待处理 <b>24</b></button><button>即将超时 <b>03</b></button><button>售后中 <b>02</b></button></div><table><thead><tr><th>订单号</th><th>商品信息</th><th>剩余时间</th><th>状态</th></tr></thead><tbody><tr><td class="orderid">SO-250418-1023</td><td><div class="product">北欧原木餐椅 · 胡桃木</div><div class="meta">x 2 · 李**</div></td><td style="color:#c64e48;font-family:DM Mono">01:18:42</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0988</td><td><div class="product">简约实木书桌 1.2m</div><div class="meta">x 1 · 陈**</div></td><td style="color:#c64e48;font-family:DM Mono">03:42:11</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0947</td><td><div class="product">藤编收纳篮 · 大号</div><div class="meta">x 3 · 王**</div></td><td style="font-family:DM Mono">08:26:35</td><td><span class="tag wait">待发货</span></td></tr><tr><td class="orderid">SO-250417-0812</td><td><div class="product">云朵靠垫套 · 米白</div><div class="meta">x 2 · 刘**</div></td><td style="font-family:DM Mono">12:10:08</td><td><span class="tag progress">拣货中</span></td></tr></tbody></table></article><article class="card ledger"><h2>本周履约表现</h2><div class="barrow"><label>准时发货率</label><div class="bar"><i style="width:96%"></i></div><span>96.2%</span></div><div class="barrow"><label>商品好评率</label><div class="bar"><i style="width:94%"></i></div><span>94.7%</span></div><div class="barrow"><label>售后响应率</label><div class="bar"><i style="width:88%"></i></div><span>88.0%</span></div></article></div>
+<section class="kpis"><div class="kpi"><label>今日待发货订单</label><strong id="kpiPending">0</strong></div><div class="kpi alert"><label>即将超时订单</label><strong id="kpiLate">0</strong></div><div class="kpi"><label>在售商品</label><strong id="kpiProducts">0</strong></div><div class="kpi"><label>本月结算金额</label><strong id="kpiSettlement">¥0</strong></div></section>
+<section class="work"><div><article class="card"><div class="card-head"><h2>订单待办</h2><span>查看全部 →</span></div><div class="tabs" id="dashboardOrderTabs"><button class="active" data-filter="pending">待处理 <b id="dashPendingCount">0</b></button><button data-filter="late">即将超时 <b id="dashLateCount">0</b></button><button data-filter="service">售后中 <b id="dashServiceCount">0</b></button></div><table><thead><tr><th>订单号</th><th>商品信息</th><th>剩余时间</th><th>状态</th></tr></thead><tbody id="dashboardOrderRows"><tr><td class="orderid">SO-250418-1023</td><td><div class="product">北欧原木餐椅 · 胡桃木</div><div class="meta">x 2 · 李**</div></td><td style="color:#c64e48;font-family:DM Mono">01:18:42</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0988</td><td><div class="product">简约实木书桌 1.2m</div><div class="meta">x 1 · 陈**</div></td><td style="color:#c64e48;font-family:DM Mono">03:42:11</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0947</td><td><div class="product">藤编收纳篮 · 大号</div><div class="meta">x 3 · 王**</div></td><td style="font-family:DM Mono">08:26:35</td><td><span class="tag wait">待发货</span></td></tr><tr><td class="orderid">SO-250417-0812</td><td><div class="product">云朵靠垫套 · 米白</div><div class="meta">x 2 · 刘**</div></td><td style="font-family:DM Mono">12:10:08</td><td><span class="tag progress">拣货中</span></td></tr></tbody></table></article><article class="card ledger"><h2>本周履约表现</h2><div class="barrow"><label>准时发货率</label><div class="bar"><i style="width:96%"></i></div><span>96.2%</span></div><div class="barrow"><label>商品好评率</label><div class="bar"><i style="width:94%"></i></div><span>94.7%</span></div><div class="barrow"><label>售后响应率</label><div class="bar"><i style="width:88%"></i></div><span>88.0%</span></div></article></div>
 <aside class="voice" aria-label="小商语音助手">
   <div class="card-head"><h2>小商 · 语音助手</h2><span>● 在线</span></div>
   <div class="voice-body">
     <div class="chat-history" id="chatHistory" aria-live="polite">
       <div class="message user">我还有哪些订单超时了？</div>
-      <div class="message assistant"><p>为你找到 3 笔即将超时订单：</p><p class="reply-detail">SO-250418-1023（01:18:42）、SO-250418-0988（03:42:11）和 SO-250418-0901（05:06:29）。建议优先处理前两笔。</p></div>
+      <div class="message assistant" id="initialAssistantMessage"><p>正在根据当前订单数据整理待办。</p></div>
     </div>
     <div class="preset-title">快捷提问</div>
     <div class="presets" aria-label="预设问题">
@@ -52,7 +52,7 @@
   <article class="card product-table"><table><thead><tr><th>商品名称</th><th>规格</th><th>单价</th><th>库存</th><th>分类</th><th>状态</th><th>操作</th></tr></thead><tbody id="productRows"></tbody></table></article>
 </section>
 <section class="view" id="ordersView" hidden><article class="card"><div class="order-page-head"><div><h1>订单管理</h1><p>跟进订单履约状态和售后进度。</p></div><span id="orderCount" class="date"></span></div><div class="page-tabs" id="orderFilters"><button type="button" class="active" data-filter="pending">待处理</button><button type="button" data-filter="late">即将超时</button><button type="button" data-filter="service">售后中</button></div><div class="order-table"><table><thead><tr><th>订单号</th><th>商品信息</th><th>金额</th><th>下单时间</th><th>剩余时间</th><th>状态</th></tr></thead><tbody id="orderRows"></tbody></table></div></article></section>
-<section class="view" id="analyticsView" hidden><div class="analysis-head"><div><h1>经营分析</h1><p>基于本月模拟经营数据生成。</p></div><span class="date">2025.04</span></div><div class="charts"><article class="card chart-card"><h2>本月销售额</h2><p>单位：千元</p><svg class="chart-svg" viewBox="0 0 430 210" role="img" aria-label="本月销售额柱状图"><path d="M35 170H410M35 25V170" stroke="#e8eaed" fill="none"/><g id="salesBars"></g><text x="8" y="33">24</text><text x="8" y="100">12</text><text x="15" y="174">0</text></svg></article><article class="card chart-card"><h2>分类销售占比</h2><p>本月销售额分布</p><svg class="chart-svg" viewBox="0 0 220 180" role="img" aria-label="商品分类销售占比饼图"><g id="categoryPie"></g><text x="110" y="86" text-anchor="middle" style="font-size:15px;fill:#273542;font-weight:700">¥86.2k</text><text x="110" y="104" text-anchor="middle">本月销售额</text></svg><div class="legend" id="categoryLegend"></div></article><article class="card chart-card wide"><h2>近 7 日订单趋势</h2><p>每日下单量</p><svg class="chart-svg" viewBox="0 0 780 185" role="img" aria-label="近七日订单趋势折线图"><path d="M35 145H755M35 25V145" stroke="#e8eaed" fill="none"/><path id="trendArea" fill="#d9f36d" opacity=".35"/><polyline id="trendLine" fill="none" stroke="#167c63" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g id="trendLabels"></g></svg></article></div></section>
+<section class="view" id="analyticsView" hidden><div class="analysis-head"><div><h1>经营分析</h1><p>基于本月模拟经营数据生成。</p></div><span class="date" id="analysisMonth"></span></div><div class="charts"><article class="card chart-card"><h2>本月销售额</h2><p>单位：千元</p><svg class="chart-svg" viewBox="0 0 430 210" role="img" aria-label="本月销售额柱状图"><path d="M35 170H410M35 25V170" stroke="#e8eaed" fill="none"/><g id="salesBars"></g><text x="8" y="33">24</text><text x="8" y="100">12</text><text x="15" y="174">0</text></svg></article><article class="card chart-card"><h2>分类销售占比</h2><p>本月销售额分布</p><svg class="chart-svg" viewBox="0 0 220 180" role="img" aria-label="商品分类销售占比饼图"><g id="categoryPie"></g><text x="110" y="86" text-anchor="middle" style="font-size:15px;fill:#273542;font-weight:700">¥86.2k</text><text x="110" y="104" text-anchor="middle">本月销售额</text></svg><div class="legend" id="categoryLegend"></div></article><article class="card chart-card wide"><h2>近 7 日订单趋势</h2><p>每日下单量</p><svg class="chart-svg" viewBox="0 0 780 185" role="img" aria-label="近七日订单趋势折线图"><path d="M35 145H755M35 25V145" stroke="#e8eaed" fill="none"/><path id="trendArea" fill="#d9f36d" opacity=".35"/><polyline id="trendLine" fill="none" stroke="#167c63" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g id="trendLabels"></g></svg></article></div></section>
 </main></div>
 <div class="modal-backdrop" id="productModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><header><h2 id="modalTitle">新建商品</h2><button class="close" id="closeModal" type="button" aria-label="关闭">×</button></header><form class="product-form" id="productForm" novalidate><div class="field"><label for="productName">商品名称</label><input id="productName" name="name" required><div class="error-text"></div></div><div class="field"><label for="productSpec">规格</label><input id="productSpec" name="spec" required placeholder="例如：胡桃木 / 45 × 52 cm"><div class="error-text"></div></div><div class="field"><label for="productPrice">单价（元）</label><input id="productPrice" name="price" type="number" min="0.01" step="0.01" required><div class="error-text"></div></div><div class="field"><label for="productStock">库存数量</label><input id="productStock" name="stock" type="number" min="0" step="1" required><div class="error-text"></div></div><div class="field"><label for="productCategory">商品分类</label><select id="productCategory" name="category" required><option value="">请选择分类</option><option>客厅家具</option><option>餐厅家具</option><option>卧室用品</option><option>收纳用品</option><option>软装饰品</option></select><div class="error-text"></div></div><div class="modal-footer"><button class="secondary" id="cancelModal" type="button">取消</button><button class="new" type="submit">保存商品</button></div></form></div></div><script>
   (() => {
@@ -69,9 +69,9 @@
     const productModal = document.getElementById('productModal');
     const productForm = document.getElementById('productForm');
     const modalTitle = document.getElementById('modalTitle');
-    const productCount = document.querySelector('.kpi:nth-child(3) strong');
+    const productCount = document.getElementById("kpiProducts");
     let editingProductId = null;
-    let products = [
+    const initialProducts = [
       { id: 1, name: '北欧原木餐椅', spec: '胡桃木 / 45 × 52 cm', price: 369, stock: 46, category: '餐厅家具', status: '在售' },
       { id: 2, name: '简约实木书桌', spec: '1.2 m / 橡木', price: 1299, stock: 18, category: '客厅家具', status: '在售' },
       { id: 3, name: '藤编收纳篮', spec: '大号 / 自然色', price: 89, stock: 75, category: '收纳用品', status: '在售' },
@@ -83,15 +83,32 @@
       { id: 9, name: '羊毛地毯', spec: '160 × 230 cm / 浅灰', price: 699, stock: 11, category: '软装饰品', status: '在售' }
     ];
 
+    const initialOrders = [
+      {id:"SO-261025-1023",product:"北欧原木餐椅 · 胡桃木",quantity:2,customer:"李**",amount:738,createdAt:new Date().toISOString(),remainingSeconds:4722,type:"late",status:"即将超时"},
+      {id:"SO-261025-0988",product:"简约实木书桌 1.2m",quantity:1,customer:"陈**",amount:1299,createdAt:new Date().toISOString(),remainingSeconds:13331,type:"pending",status:"待发货"},
+      {id:"SO-261025-0947",product:"藤编收纳篮 · 大号",quantity:3,customer:"王**",amount:267,createdAt:new Date().toISOString(),remainingSeconds:30395,type:"pending",status:"待发货"},
+      {id:"SO-261024-0812",product:"云朵靠垫套 · 米白",quantity:2,customer:"刘**",amount:98,createdAt:new Date(Date.now()-86400000).toISOString(),remainingSeconds:43808,type:"pending",status:"待发货"},
+      {id:"SO-261024-0780",product:"磨砂玻璃花瓶 · 烟灰",quantity:1,customer:"周**",amount:129,createdAt:new Date(Date.now()-86400000).toISOString(),remainingSeconds:56539,type:"pending",status:"待发货"},
+      {id:"SO-261023-0651",product:"棉麻床品四件套 · 燕麦色",quantity:1,customer:"孙**",amount:459,createdAt:new Date(Date.now()-172800000).toISOString(),remainingSeconds:null,type:"service",status:"换货中"}
+    ];
+    const STORAGE_KEY="shangliu-workbench-state-v1";
+    function loadState(){try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY));if(x&&Array.isArray(x.products)&&Array.isArray(x.orders))return x;}catch(e){}return {products:initialProducts,orders:initialOrders};}
+    const state=loadState(); let products=state.products; let orders=state.orders;
+    function saveState(){state.products=products;state.orders=orders;try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
+    function remainingLabel(o){if(o.remainingSeconds==null)return "处理中";const n=Math.max(0,o.remainingSeconds);return [Math.floor(n/3600),Math.floor(n%3600/60),n%60].map(v=>String(v).padStart(2,"0")).join(":");}
+    function isLate(o){return o.remainingSeconds!=null&&o.remainingSeconds<7200;}
+    function ordersForFilter(f){return f==="pending"?orders.filter(o=>o.type!=="service"):f==="late"?orders.filter(isLate):orders.filter(o=>o.type==="service");}
+    function monthOrders(){const n=new Date();return orders.filter(o=>{const d=new Date(o.createdAt);return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth();});}
+    function renderKpis(){const p=orders.filter(o=>o.status==="待发货").length,l=orders.filter(isLate).length,a=products.filter(p=>p.status==="在售").length,m=monthOrders().reduce((v,o)=>v+Number(o.amount||0),0);document.getElementById("kpiPending").textContent=p;document.getElementById("kpiLate").textContent=l;productCount.textContent=a;document.getElementById("kpiSettlement").textContent="¥"+m.toLocaleString("zh-CN");document.getElementById("dashPendingCount").textContent=ordersForFilter("pending").length;document.getElementById("dashLateCount").textContent=ordersForFilter("late").length;document.getElementById("dashServiceCount").textContent=ordersForFilter("service").length;}
+    function renderDashboardOrders(filter="pending"){const list=ordersForFilter(filter),body=document.getElementById("dashboardOrderRows"),classes={late:"late",pending:"wait",service:"service"};body.innerHTML=list.map(o=>`<tr><td class="orderid">${o.id}</td><td><div class="product">${o.product}</div><div class="meta">x ${o.quantity} · ${o.customer}</div></td><td style="font-family:DM Mono">${remainingLabel(o)}</td><td><span class="tag ${classes[o.type]||"wait"}">${o.status}</span></td></tr>`).join("")||`<tr><td colspan="4" class="empty-view">暂无订单</td></tr>`;}
+
     function renderProducts() {
       productRows.innerHTML = products.map(product => `<tr><td class="product">${product.name}</td><td>${product.spec}</td><td>¥${Number(product.price).toFixed(2)}</td><td>${product.stock}</td><td>${product.category}</td><td><span class="tag product-status ${product.status === '下架' ? 'off' : ''}">${product.status}</span></td><td><div class="actions"><button class="text-button" type="button" data-action="edit" data-id="${product.id}">编辑</button><button class="text-button delete" type="button" data-action="delete" data-id="${product.id}">删除</button></div></td></tr>`).join('');
-      productCount.textContent = products.filter(product => product.status === '在售').length;
+      saveState(); renderKpis();
     }
 
-    function showView(viewName) {
-      views.forEach(view => { view.hidden = view.id !== `${viewName}View`; });
-      navLinks.forEach(link => link.classList.toggle('active', link.dataset.view === viewName));
-    }
+    function showView(viewName) { if(!document.getElementById(`${viewName}View`))viewName="dashboard"; views.forEach(view=>{view.hidden=view.id!==`${viewName}View`;}); navLinks.forEach(link=>link.classList.toggle("active",link.dataset.view===viewName)); const hash="#/"+viewName;if(location.hash!==hash)history.replaceState(null,"",hash); }
+    function routeFromHash(){const name=location.hash.replace(/^#\\/?/,"")||"dashboard";showView(["dashboard","products","orders","analytics"].includes(name)?name:"dashboard");}
 
     function clearErrors() { productForm.querySelectorAll('.field').forEach(field => { field.classList.remove('error'); field.querySelector('.error-text').textContent = ''; }); }
     function openProductModal(product = null) {
@@ -103,7 +120,7 @@
     }
     function closeProductModal() { productModal.hidden = true; }
 
-    navLinks.forEach(link => link.addEventListener('click', event => { event.preventDefault(); showView(link.dataset.view); }));
+    navLinks.forEach(link => link.addEventListener("click",event=>{event.preventDefault();showView(link.dataset.view);})); window.addEventListener("hashchange",routeFromHash);
     document.getElementById('newProductButton').addEventListener('click', () => openProductModal());
     document.getElementById('productsNewButton').addEventListener('click', () => openProductModal());
     document.getElementById('closeModal').addEventListener('click', closeProductModal);
@@ -121,28 +138,22 @@
       if (!valid) return;
       const product = { id: editingProductId ?? Date.now(), name: data.name.trim(), spec: data.spec.trim(), price: Number(data.price), stock: Number(data.stock), category: data.category, status: '在售' };
       if (editingProductId) products = products.map(item => item.id === editingProductId ? { ...item, ...product, status: products.find(old => old.id === editingProductId).status } : item); else products.unshift(product);
-      renderProducts(); closeProductModal(); showView('products');
+      renderProducts();
+    document.getElementById("initialAssistantMessage").innerHTML=replyFor("超时订单"); closeProductModal(); showView('products');
     });
     renderProducts();
 
     let activeOrderFilter = 'pending';
-    const orders = [
-      { id: 'SO-250418-1023', product: '北欧原木餐椅 · 胡桃木', quantity: 2, customer: '李**', amount: 738, time: '今天 09:12', remaining: '01:18:42', type: 'late', status: '即将超时' },
-      { id: 'SO-250418-0988', product: '简约实木书桌 1.2m', quantity: 1, customer: '陈**', amount: 1299, time: '今天 08:46', remaining: '03:42:11', type: 'late', status: '即将超时' },
-      { id: 'SO-250418-0947', product: '藤编收纳篮 · 大号', quantity: 3, customer: '王**', amount: 267, time: '今天 08:20', remaining: '08:26:35', type: 'pending', status: '待发货' },
-      { id: 'SO-250417-0812', product: '云朵靠垫套 · 米白', quantity: 2, customer: '刘**', amount: 98, time: '昨天 17:35', remaining: '12:10:08', type: 'pending', status: '待发货' },
-      { id: 'SO-250417-0780', product: '磨砂玻璃花瓶 · 烟灰', quantity: 1, customer: '周**', amount: 129, time: '昨天 16:18', remaining: '15:42:19', type: 'pending', status: '待发货' },
-      { id: 'SO-250416-0651', product: '棉麻床品四件套 · 燕麦色', quantity: 1, customer: '孙**', amount: 459, time: '04-16 14:05', remaining: '处理中', type: 'service', status: '换货中' }
-    ];
+    const salesData = [11, 14, 10, 18, 15, 21, 17];
     const salesData = [11, 14, 10, 18, 15, 21, 17];
     const categoryData = [{ name: '客餐厅家具', value: 38, color: '#167c63' }, { name: '软装饰品', value: 28, color: '#d9f36d' }, { name: '卧室用品', value: 21, color: '#efb77e' }, { name: '收纳用品', value: 13, color: '#7fa8d1' }];
     const trendData = [18, 24, 21, 31, 28, 36, 33];
 
     function renderOrders() {
-      const visibleOrders = activeOrderFilter === 'pending' ? orders.filter(order => order.type !== 'service') : orders.filter(order => order.type === activeOrderFilter);
+      const visibleOrders = ordersForFilter(activeOrderFilter);
       const tagClass = { late: 'late', pending: 'wait', service: 'service' };
-      orderRows.innerHTML = visibleOrders.map(order => `<tr><td class="orderid">${order.id}</td><td><div class="product">${order.product}</div><div class="meta">x ${order.quantity} · ${order.customer}</div></td><td>¥${order.amount.toFixed(2)}</td><td class="meta">${order.time}</td><td style="font-family:DM Mono;color:${order.type === 'late' ? '#c64e48' : '#586674'}">${order.remaining}</td><td><span class="tag ${tagClass[order.type]}">${order.status}</span></td></tr>`).join('');
-      document.getElementById('orderCount').textContent = `${visibleOrders.length} 笔订单`;
+      orderRows.innerHTML = visibleOrders.map(order => `<tr><td class="orderid">${order.id}</td><td><div class="product">${order.product}</div><div class="meta">x ${order.quantity} · ${order.customer}</div></td><td>¥${order.amount.toFixed(2)}</td><td class="meta">${new Date(order.createdAt).toLocaleString("zh-CN",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false})}</td><td style="font-family:DM Mono;color:${order.type === 'late' ? '#c64e48' : '#586674'}">${remainingLabel(order)}</td><td><span class="tag ${tagClass[order.type]}">${order.status}</span></td></tr>`).join('');
+      document.getElementById("orderCount").textContent=`${visibleOrders.length} 笔订单`;renderKpis();
     }
     function renderCharts() {
       const maxSales = Math.max(...salesData); const chartBottom = 170;
@@ -152,7 +163,9 @@
       const maxTrend = Math.max(...trendData); const points = trendData.map((value, index) => `${55 + index * 110},${140 - value / maxTrend * 95}`); document.getElementById('trendLine').setAttribute('points', points.join(' ')); document.getElementById('trendArea').setAttribute('d', `M${points[0]} L${points.join(' L')} L715,145 L55,145 Z`); document.getElementById('trendLabels').innerHTML = trendData.map((value, index) => `<text x="${55 + index * 110}" y="168" text-anchor="middle">${index + 12}日</text><circle cx="${55 + index * 110}" cy="${140 - value / maxTrend * 95}" r="4" fill="#167c63"/>`).join('');
     }
     document.getElementById('orderFilters').addEventListener('click', event => { const button = event.target.closest('button[data-filter]'); if (!button) return; activeOrderFilter = button.dataset.filter; document.querySelectorAll('#orderFilters button').forEach(item => item.classList.toggle('active', item === button)); renderOrders(); });
-    renderOrders(); renderCharts();
+    renderOrders(); renderCharts(); renderKpis(); renderDashboardOrders();
+    document.getElementById("dashboardOrderTabs").addEventListener("click",event=>{const b=event.target.closest("button[data-filter]");if(!b)return;document.querySelectorAll("#dashboardOrderTabs button").forEach(x=>x.classList.toggle("active",x===b));renderDashboardOrders(b.dataset.filter);});
+    function renderDate(){const n=new Date(),w=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];document.getElementById("currentDate").textContent=`${n.getFullYear()}. ${String(n.getMonth()+1).padStart(2,"0")}. ${String(n.getDate()).padStart(2,"0")} · ${w[n.getDay()]}`;document.getElementById("analysisMonth").textContent=`${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,"0")}`;}renderDate();routeFromHash();
 
     function scrollToLatest() {
       history.scrollTop = history.scrollHeight;
@@ -168,14 +181,13 @@
     }
 
     function replyFor(question) {
-      if (/超时|逾期|订单/.test(question)) {
-        return '<p>目前有 3 笔订单需要优先关注。</p><p class="reply-detail">SO-250418-1023 还剩 01:18:42；SO-250418-0988 还剩 03:42:11。其余待发订单均在履约时限内。</p>';
-      }
+      if (/超时|逾期/.test(question)) { const list=orders.filter(isLate);return `<p>目前有 ${list.length} 笔订单剩余时间不足 2 小时。</p><p class="reply-detail">${list.map(o=>o.id+"（"+remainingLabel(o)+"）").join("；")||"目前没有即将超时订单。"}</p>`; }
+      if (/订单/.test(question)) { const list=ordersForFilter("pending");return `<p>当前有 ${list.length} 笔待处理订单。</p><p class="reply-detail">${list.map(o=>o.id).join("、")||"目前没有待处理订单。"}</p>`; }
       if (/商品|库存|在售|创建/.test(question)) {
         const activeProducts = products.filter(product => product.status === '在售').length;
         return `<p>当前共有 ${activeProducts} 个在售商品。</p><p class="reply-detail">原木餐椅和藤编收纳篮库存充足；如需录入商品，可点击页面右上角“新建商品”。</p>`;
       }
-      return '<p>我已查看当前工作台数据。</p><p class="reply-detail">今天有 24 笔待发货订单、3 笔即将超时订单；本月结算金额为 ¥86,240。</p>';
+      return `<p>我已查看当前工作台数据。</p><p class="reply-detail">今天有 ${orders.filter(o=>o.status==="待发货").length} 笔待发货订单、${orders.filter(isLate).length} 笔即将超时订单；本月结算金额为 ¥${monthOrders().reduce((v,o)=>v+Number(o.amount||0),0).toLocaleString("zh-CN")}。</p>`;
     }
 
     function sendMessage(question = input.value.trim()) {
