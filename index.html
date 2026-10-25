@@ -289,7 +289,7 @@
     }
     function sendMessage(question=input.value.trim()){
       if(!question){input.focus();return;}if(typingTimer)stopTyping();
-      addMessage(question,"user");input.value="";sessionRounds++;updateRuntimeMetrics();
+      addMessage(question,"user");input.value="";syncSendState();sessionRounds++;updateRuntimeMetrics();
       const assistantReply=intentFor(question);
       if(assistantReply.type==="action"){const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);const original=assistantReply;const wait=window.setInterval(()=>{if(!typingTimer){window.clearInterval(wait);if(node.isConnected&&original.action==="createProduct"&&!node.textContent.includes("（已停止生成）"))executeAction(original.action,original.payload);}},30);scrollToLatest();return;}
       const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);scrollToLatest();
