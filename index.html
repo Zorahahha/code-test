@@ -89,7 +89,7 @@
     ];
 
     const initialOrders = [
-      {id:"SO-261025-1023",product:"北欧原木餐椅 · 胡桃木",quantity:2,customer:"李**",amount:738,createdAt:new Date().toISOString(),remainingSeconds:4722,type:"late",status:"即将超时"},
+      {id:"SO-261025-1023",product:"北欧原木餐椅 · 胡桃木",quantity:2,customer:"李**",amount:738,createdAt:new Date().toISOString(),remainingSeconds:4722,type:"pending",status:"即将超时"},
       {id:"SO-261025-0988",product:"简约实木书桌 1.2m",quantity:1,customer:"陈**",amount:1299,createdAt:new Date().toISOString(),remainingSeconds:13331,type:"pending",status:"待发货"},
       {id:"SO-261025-0947",product:"藤编收纳篮 · 大号",quantity:3,customer:"王**",amount:267,createdAt:new Date().toISOString(),remainingSeconds:30395,type:"pending",status:"待发货"},
       {id:"SO-261024-0812",product:"云朵靠垫套 · 米白",quantity:2,customer:"刘**",amount:98,createdAt:new Date(Date.now()-86400000).toISOString(),remainingSeconds:43808,type:"pending",status:"待发货"},
@@ -202,7 +202,7 @@
     updateRuntimeMetrics();
     document.getElementById("dashboardOrderTabs").addEventListener("click",event=>{const b=event.target.closest("button[data-filter]");if(!b)return;document.querySelectorAll("#dashboardOrderTabs button").forEach(x=>x.classList.toggle("active",x===b));renderDashboardOrders(b.dataset.filter);});
     function renderDate(){const n=new Date(),w=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];document.getElementById("currentDate").textContent=`${n.getFullYear()}. ${String(n.getMonth()+1).padStart(2,"0")}. ${String(n.getDate()).padStart(2,"0")} · ${w[n.getDay()]}`;document.getElementById("analysisMonth").textContent=`${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,"0")}`;}renderDate();routeFromHash();
-    window.setInterval(()=>{let changed=false;orders.forEach(o=>{if(!isUnfinished(o)||typeof o.remainingSeconds!=="number")return;if(o.remainingSeconds>0){o.remainingSeconds=Math.max(0,o.remainingSeconds-1);changed=true;}if(o.remainingSeconds===0&&o.status!=="已超时"){o.type="late";o.status="已超时";changed=true;}});if(changed){saveState();renderKpis();renderDashboardOrders(document.querySelector("#dashboardOrderTabs button.active")?.dataset.filter||"pending");renderOrders();renderFulfillment();}},1000);
+    window.setInterval(()=>{let changed=false;orders.forEach(o=>{if(!isUnfinished(o)||typeof o.remainingSeconds!=="number")return;if(o.remainingSeconds>0){o.remainingSeconds=Math.max(0,o.remainingSeconds-1);changed=true;}if(o.remainingSeconds===0&&o.status!=="已超时"){o.status="已超时";changed=true;}});if(changed){saveState();renderKpis();renderDashboardOrders(document.querySelector("#dashboardOrderTabs button.active")?.dataset.filter||"pending");renderOrders();renderFulfillment();}},1000);
 
     function scrollToLatest() {
       history.scrollTop = history.scrollHeight;
