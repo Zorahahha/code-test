@@ -1,5 +1,5 @@
 (function(g){"use strict";
-const KEY="shangliu-workbench-data-v1",now=Date.now(),iso=n=>new Date(now-(n||0)).toISOString();
+const KEY="shangliu-workbench-data-v2",now=Date.now(),iso=n=>new Date(now-(n||0)).toISOString();
 const products=[
 {id:"P001",sku:"SKU-CHAIR-01",name:"北欧原木餐椅",spec:"胡桃木 / 45 × 52 cm",category:"餐厅家具",price:369,status:"在售"},
 {id:"P002",sku:"SKU-DESK-01",name:"简约实木书桌",spec:"1.2 m / 橡木",category:"客厅家具",price:1299,status:"在售"},
