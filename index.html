@@ -311,10 +311,12 @@
     function showLateProactivePush(){if(sessionPushes.has("late-orders"))return;const lateOrders=orders.filter(isLate);if(!lateOrders.length)return;sessionPushes.add("late-orders");if(assistantPanel.hidden){assistantToggle.classList.add("has-unread");pendingLatePush=true;return;}const node=document.getElementById("lateProactivePush");node.hidden=false;node.innerHTML=`<button type="button" class="dismiss-push" aria-label="关闭" data-dismiss-push="lateProactivePush">×</button><div><span class="new-mark">新</span>检测到 ${lateOrders.length} 笔订单将在 2 小时内超时，已生成加急方案</div><div class="assistant-actions"><button type="button" class="primary" data-bulk-expedite="1">一键全部加急</button><button type="button" data-view-late="1">逐笔查看</button></div>`;}
     function focusLateRows(){window.setTimeout(()=>{document.querySelectorAll("#orderRows tr").forEach(tr=>{const id=tr.querySelector(".orderid")?.textContent.trim(),o=orders.find(x=>x.id===id);if(o&&isLate(o))tr.classList.add("row-flash");});window.setTimeout(()=>document.querySelectorAll("#orderRows tr.row-flash").forEach(tr=>tr.classList.remove("row-flash")),3200);},20);}
     let urgentShown=false;
+    function busyWithOtherDialog(){return ["purchaseModal","shippingModal","productModal","cancelModal","closeModal","conversationDrawer"].some(id=>{const el=document.getElementById(id);return el&&!el.hidden&&getComputedStyle(el).display!=="none";});}
     function openUrgentModal(){
       if(urgentShown)return;
       const late=orders.filter(isLate);
       if(!late.length)return;
+      if(busyWithOtherDialog()){window.setTimeout(openUrgentModal,6000);return;}
       urgentShown=true;
       document.getElementById("urgentDesc").textContent=`检测到 ${late.length} 笔订单将在 2 小时内超时，需要立即处理。`;
       document.getElementById("urgentList").innerHTML=late.map(o=>`<li><b>${escapeHtml(o.id)}</b><span>${escapeHtml(o.product||"")}</span><em>${remainingLabel(o)}</em></li>`).join("");
@@ -354,6 +356,20 @@
     function showToast(message,undoId=null){if(undoId){toast(message,{action:{label:"撤销",onClick:()=>{const id=String(undoId),fn=undoActions.get(id);if(fn){fn();undoActions.delete(id);toast("已撤销下架",{type:"info"});}}}});return;}toast(message);}
     function mentionedProduct(question){return products.find(p=>question.includes(p.name))||null;}
     function mentionedOrder(question){return orders.find(o=>question.includes(o.id))||orders.find(o=>question.includes(o.product.split(" · ")[0]))||null;}
+    function moneyReply(){const tb=WorkbenchData.getTables(),count=tb.orders.filter(o=>o.status==="已完成").length,st=tb.settlements.reduce((a,s)=>({gross:a.gross+Number(s.gross||0),commission:a.commission+Number(s.commission||0),shipping:a.shipping+Number(s.shippingFee||0),net:a.net+Number(s.net||0)}),{gross:0,commission:0,shipping:0,net:0});return {type:"text",text:`本月已完成 ${count} 笔订单：销售额 ${formatMoney(st.gross)}，佣金 5% ${formatMoney(st.commission)}，运费 ${formatMoney(st.shipping)}，净结算 ${formatMoney(st.net)}。`};}
+    function normalizeQuestion(raw){
+      let q=String(raw||"");
+      const fix=[
+        [/收人|收如|收⼊|售入|手入|收λ|收乳/g,"收入"],
+        [/营入|盈收|银收|营収|盈入|英收/g,"营收"],
+        [/入裤|入厍|如库|入哭|入库单/g,"入库"],
+        [/采狗|采构|踩购|采杓|才购/g,"采购"],
+        [/缺贷|炔货|缺或|却货/g,"缺货"],
+        [/定单|订丹|顶单/g,"订单"]
+      ];
+      fix.forEach(([re,to])=>{q=q.replace(re,to);});
+      return q;
+    }
     function intentFor(question){
       if(/缺货|断货|没货|无货|售罄|库存不足/.test(question)){const t=WorkbenchData.getTables(),rows=t.stock.map(s=>{const p=t.products.find(x=>x.sku===s.sku);return{sku:s.sku,name:p?p.name:s.sku,available:s.onHand-s.reserved,safety:s.safetyStock};}),zero=rows.filter(r=>r.available<=0),low=rows.filter(r=>r.available>0&&r.available<r.safety),parts=[];if(zero.length)parts.push(`${zero.length} 个已缺货（${zero.map(r=>r.name+" · 可售 0").join("、")}）`);if(low.length)parts.push(`${low.length} 个低于安全库存（${low.map(r=>r.name+" · 可售 "+r.available+" / 安全 "+r.safety).join("、")}）`);return {type:"text",text:parts.length?`当前 ${parts.join("；")}。建议优先补货。`:"当前没有缺货商品，所有 SKU 可售库存都高于安全库存。"};}
       if(/入库|采购|进货|补货|加库存|添库存/.test(question)){return {type:"action",text:"我来打开采购入库单，选择商品并填写入库数量。",action:"purchaseIn"};}
@@ -362,9 +378,10 @@
       if(/加急/.test(question)){const order=mentionedOrder(question)||orders.find(o=>isUnfinished(o));return order?{type:"confirm",text:`确认将订单 ${order.id} 标记为加急吗？`,action:"expediteOrder",payload:{orderId:order.id}}:{type:"text",text:"当前没有可加急的订单。"};}
       if(/发货|发出订单/.test(question)){const order=mentionedOrder(question)||orders.find(o=>isUnfinished(o));return order?{type:"confirm",text:`确认订单 ${order.id} 已完成发货吗？确认后会从待处理列表移除。`,action:"shipOrder",payload:{orderId:order.id}}:{type:"text",text:"当前没有可发货的订单。"};}
       if(/超时|逾期|即将超时/.test(question)){const list=orders.filter(isLate);if(list.length===0)return {type:"text",text:"当前没有即将超时的订单，全部在履约时限内。"};if(list.length===1)return {type:"text",text:"有 1 笔订单剩余时间不足 2 小时，建议优先处理。",payload:{orders:list}};return {type:"text",text:`有 ${list.length} 笔订单剩余时间不足 2 小时。`,payload:{orders:list}};}
-      if(/结算|销售额|本月金额|回款|营收|收入|业绩|利润|经营情况|赚/.test(question)){const tb=WorkbenchData.getTables(),count=tb.orders.filter(o=>o.status==="已完成").length,st=tb.settlements.reduce((a,s)=>({gross:a.gross+Number(s.gross||0),commission:a.commission+Number(s.commission||0),shipping:a.shipping+Number(s.shippingFee||0),net:a.net+Number(s.net||0)}),{gross:0,commission:0,shipping:0,net:0});return {type:"text",text:`本月已完成 ${count} 笔订单：销售额 ${formatMoney(st.gross)}，佣金 5% ${formatMoney(st.commission)}，运费 ${formatMoney(st.shipping)}，净结算 ${formatMoney(st.net)}。`};}
+      if(/结算|销售额|本月金额|回款|营收|收入|业绩|利润|经营情况|赚|收益|流水|进账|到账|营业额|月收|挣/.test(question))return moneyReply();
       if(/库存|在售商品|商品数量|商品有哪些/.test(question)){const list=products.filter(p=>p.status==="在售");return {type:"text",text:`当前有 ${list.length} 个在售商品。`,payload:{products:list}};}
       if(/订单|待发货|待处理/.test(question)){const list=ordersForFilter("pending");return {type:"text",text:`当前有 ${list.length} 笔全部待处理订单，其中 ${list.filter(isLate).length} 笔即将超时。`,payload:{orders:list}};}
+      if(/(?:这个|本|上|当)?月/.test(question)&&/(?:多少|怎么样|咋样|如何|情况|好不好)/.test(question))return moneyReply();
       return {type:"text",text:"抱歉，这句话我还没学会。你可以这样问：「有哪些缺货商品」「我要入库」「这个月营收多少」「查看待发货订单」。"};
     }
     function renderOrderCards(list){if(!list?.length)return '<p class="reply-detail">没有符合条件的订单。</p>';return list.map(o=>{const late=isLate(o),label=orderStatus(o);return `<div class="order-card"><div class="order-card-head"><span class="order-card-id">${escapeHtml(o.id)}</span><span class="tag ${late?"late":label==="售后中"?"service":"wait"}">${escapeHtml(label)}</span></div><p>${escapeHtml(o.product)} · 剩余时间：<em style="${late?"color:#c64e48;font-style:normal":""}">${escapeHtml(remainingLabel(o))}</em>${late?' <span class="late-mini">即将超时</span>':""}</p><div class="assistant-actions"><button type="button" class="primary" data-order-action="expedite" data-order-id="${escapeHtml(o.id)}">加急</button><button type="button" data-order-action="ship" data-order-id="${escapeHtml(o.id)}">发货</button></div></div>`;}).join("");}
@@ -385,8 +402,8 @@
     function sendMessage(question=input.value.trim()){
       if(!question){input.focus();return;}if(typingTimer)stopTyping();
       addMessage(question,"user");input.value="";syncSendState();sessionRounds++;updateRuntimeMetrics();
-      const assistantReply=intentFor(question);
-      if(assistantReply.type==="action"){const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);const original=assistantReply;const wait=window.setInterval(()=>{if(!typingTimer){window.clearInterval(wait);if(node.isConnected&&original.action==="createProduct"&&!node.textContent.includes("（已停止生成）"))executeAction(original.action,original.payload);}},30);scrollToLatest();return;}
+      const assistantReply=intentFor(normalizeQuestion(question));
+      if(assistantReply.type==="action"){const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);const original=assistantReply;const wait=window.setInterval(()=>{if(!typingTimer){window.clearInterval(wait);if(node.isConnected&&!node.textContent.includes("（已停止生成）"))executeAction(original.action,original.payload);}},30);scrollToLatest();return;}
       const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);scrollToLatest();
     }
     stopGenerationButton.addEventListener("click",stopTyping);
