@@ -281,7 +281,7 @@
       if(action==="unlistProduct"){const p=products.find(x=>String(x.id)===String(payload.productId));if(!p)return;const old=p.status;p.status="下架";saveState();refreshWorkbench();executedActions++;updateRuntimeMetrics();showToast("已下架",String(p.id));undoActions.set(String(p.id),()=>{p.status=old;saveState();refreshWorkbench();});return;}
       const order=orders.find(o=>o.id===payload.orderId);if(!order)return;
       if(action==="expediteOrder"){order.status="已加急";order.expedited=true;}
-      else if(action==="shipOrder"){try{WorkbenchData.transitionOrder(order.id,"ship",{carrier:"待填写",trackingNo:payload.trackingNo||("DEMO-"+order.id)});}catch(error){showToast(error.message,{type:"error"});return;}}
+      else if(action==="shipOrder"){const trackingNo=String(payload.trackingNo||window.prompt("请输入物流单号","")||"").trim();if(!trackingNo){showToast("已取消发货，请填写物流单号",{type:"info"});return;}try{WorkbenchData.transitionOrder(order.id,"ship",{carrier:"待填写",trackingNo});}catch(error){showToast(error.message,{type:"error"});return;}}
       else return;
       saveState();refreshWorkbench();executedActions++;updateRuntimeMetrics();showToast(action==="expediteOrder"?"已加急":"已发货");
     }
