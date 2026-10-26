@@ -5,7 +5,6 @@ document.head.insertAdjacentHTML("beforeend",`<style>
 </style>`);
 if(!$('.nav [data-view="inventory"]'))$('.nav').insertAdjacentHTML("beforeend",'<a href="#/inventory" data-view="inventory"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 7l2-4h14l2 4M8 11h8"/></svg><span>库存管理</span></a>');
 const metricIds={kpiPending:"pendingShipments",kpiLate:"lateShipments",kpiProducts:"onSaleProducts",kpiSettlement:"monthSettlement"};
-Object.entries(metricIds).forEach(([id,key])=>{const c=$('#'+id)?.closest('.kpi');if(c&&!c.querySelector('.source-icon'))c.insertAdjacentHTML('beforeend','<button type="button" class="source-icon" data-metric="'+key+'">ⓘ 来源</button>');});
 const shade=document.createElement('div');shade.className='drawer-shade';shade.id='detailShade';shade.hidden=true;document.body.append(shade);
 const drawer=document.createElement('aside');drawer.className='detail-drawer';drawer.id='orderDetailDrawer';drawer.hidden=true;drawer.setAttribute('role','dialog');drawer.setAttribute('aria-modal','true');document.body.append(drawer);
 function go(view){$('.view').forEach(v=>v.hidden=v.id!==view+'View');$('.nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===view));history.replaceState(null,'','#/'+view);}
