@@ -67,11 +67,41 @@
     .conversation-list{flex:1;overflow:auto;padding:10px}.conversation-item{display:block;width:100%;text-align:left;border:1px solid transparent;border-radius:9px;padding:11px;background:transparent;cursor:pointer;color:var(--ink);margin-bottom:6px}.conversation-item:hover,.conversation-item.active{background:#edf5f2;border-color:#d6e7e0}.conversation-item strong{display:block;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.conversation-item span{display:block;font-size:10px;color:var(--muted);margin-top:5px}.history-empty{font-size:12px;color:var(--muted);text-align:center;padding:24px}.drawer-foot{padding:12px;border-top:1px solid #e5eaed}.drawer-foot button{width:100%;border:0;border-radius:8px;padding:10px;background:#d9f36d;color:#24333e;font-weight:600;cursor:pointer}
     .welcome-message{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:8px 2px 14px}.welcome-avatar{width:34px;height:34px;border-radius:11px;background:#d9f36d;color:#24333e;display:grid;place-items:center;font-size:11px;font-weight:700}.welcome-message p{margin:0;font-size:13px;line-height:1.65;color:#e1e8eb}.notice-insight{border-left:3px solid #d99a2b}.notice-lowstock{border-left:3px solid #d9f36d}
 
+
+    /* ===== 小商 v3：机器人形象与交互增强 ===== */
+    .bot-title{display:flex;align-items:center;gap:8px;margin:0;font-size:14px}
+    .bot-mark{display:grid;place-items:center;width:26px;height:26px;border-radius:9px;background:#d9f36d;color:#22323d;flex:0 0 auto}
+    .welcome-avatar.bot{background:#d9f36d;color:#22323d;border-radius:11px;display:grid;place-items:center}
+    .assistant-toggle svg{transition:transform .18s ease}
+    .assistant-toggle:hover svg{transform:translateY(-1px) rotate(-4deg)}
+    .chips-row{display:flex;gap:6px;overflow-x:auto;padding:1px 1px 5px;scrollbar-width:none}
+    .chips-row::-webkit-scrollbar{display:none}
+    .chips-row .preset{flex:0 0 auto;white-space:nowrap;border-radius:999px;padding:6px 11px}
+    .chips-row .preset:hover{background:#3a4b58;border-color:#6b7f8b}
+    .candidates{display:flex;flex-direction:column;gap:6px;margin-top:9px}
+    .candidate{border:1px solid #4b5d69;background:#2d3b47;border-radius:8px;padding:8px 10px;text-align:left;font-family:inherit;font-size:12px;color:#e4ecef;cursor:pointer;line-height:1.4}
+    .candidate:hover{background:#3a4b58;border-color:#7f95a1}
+    .candidate small{display:block;color:#9fb0ba;font-size:11px;margin-top:3px}
+    .cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
+    .cap{border:1px solid #475966;border-radius:8px;padding:7px 9px;background:#2d3b47;cursor:pointer;text-align:left;font-family:inherit}
+    .cap b{display:block;font-size:11.5px;color:#e9f1f3;font-weight:600}
+    .cap span{display:block;font-size:10.5px;color:#9fb0ba;margin-top:2px}
+    .cap:hover{background:#3a4b58;border-color:#7f95a1}
+    .briefing{margin-top:9px;display:flex;flex-direction:column;gap:5px}
+    .brief-row{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#dbe5e9;background:#2d3b47;border-radius:8px;padding:7px 9px;border-left:3px solid #53646f}
+    .brief-row.warn{border-left-color:#d99a2b}
+    .brief-row.bad{border-left-color:#cf4f4c}
+    .brief-row.good{border-left-color:#69c39a}
+    .brief-row b{font-family:DM Mono,monospace;font-size:11px;color:#9fb0ba;min-width:52px}
+    .brief-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .brief-actions button{border:1px solid #53646f;background:#2d3b47;color:#dde6ea;border-radius:7px;padding:6px 10px;font-family:inherit;font-size:11.5px;cursor:pointer}
+    .brief-actions button:hover{background:#3a4b58}
+    .rewrite-note{font-size:11px;color:#8ea0aa;margin-top:6px;font-style:normal}
   </style>
 <style>.product-sku{font-size:11px;color:#929ba3;font-weight:400;margin-top:3px}.product-stock-low{background:transparent!important;color:#cf4f4c;font-weight:600}.stock-low-note{font-size:10px;color:#cf4f4c;margin-top:3px;font-weight:500}.status-switch{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce3e5;border-radius:20px;padding:5px 9px;background:#f2f3f4;color:#79848c;font:inherit;font-size:11px;white-space:nowrap}.status-switch .switch-dot{width:9px;height:9px;border-radius:50%;background:#9aa4ae}.status-switch.on{background:#e9f7f2;border-color:#bfe2d6;color:#15765f}.status-switch.on .switch-dot{background:#167c63}.status-switch.off{background:#f2f3f4;color:#79848c}.status-switch:focus-visible{outline:2px solid #167c63;outline-offset:2px}</style><style>.batch-ship-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 16px;padding:12px 14px;border:1px solid #cfe3dc;background:#f2faf6;border-radius:9px;color:#167c63;font-size:12px}.batch-ship-bar[hidden]{display:none}.batch-ship-bar>div{display:flex;gap:8px}.batch-ship-bar button{font-size:12px;padding:7px 10px}.ship-button{border:0;border-radius:6px;background:#167c63;color:white;padding:7px 10px;font:inherit;font-size:12px;cursor:pointer}.ship-button:disabled{opacity:.45;cursor:not-allowed}.order-select{width:15px;height:15px;accent-color:#167c63}.shipping-selected-count{font-size:12px;line-height:1.6;color:#687582;margin:0 0 14px}</style></head>
 <body><div class="shell">
-<aside class="side"><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#" data-view="dashboard"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#" data-view="products"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#" data-view="orders"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#" data-view="analytics"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a><a href="#/inventory" data-view="inventory"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 7l2-4h14l2 4M8 11h8"/></svg><span>库存管理</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v2.4.0</span><button class="reset-demo" id="resetDemoData" type="button" aria-label="重置演示数据" title="重置演示数据">重置演示数据</button></div></aside>
-<main class="main"><header class="top"><div class="crumb"><b>商流供应链</b>&nbsp; / &nbsp;工作台</div><div class="top-right"><span class="date" id="currentDate"></span><button class="assistant-toggle" id="assistantToggle" type="button" aria-label="打开小商助手" aria-expanded="false" aria-controls="assistantPanel"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.9 8.9 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5Z"/><path d="M12.5 7.6l1.1 2.4 2.4 1.1-2.4 1.1-1.1 2.4-1.1-2.4L9 11.1l2.4-1.1 1.1-2.4Z" fill="currentColor" stroke="none"/></svg><i class="online-dot" aria-hidden="true"></i></button></div></header>
+<aside class="side"><div class="supplier"><div class="avatar">禾</div><div><b>禾木家居供应商</b><small>供应商 ID · 889201</small></div></div><div class="nav-title">工作台</div><nav class="nav"><a class="active" href="#" data-view="dashboard"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg><span>总览</span></a><a href="#" data-view="products"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg><span>商品管理</span></a><a href="#" data-view="orders"><svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 3v6m8-6v6"/></svg><span>订单管理</span></a><a href="#" data-view="analytics"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-6"/></svg><span>经营分析</span></a><a href="#/inventory" data-view="inventory"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 7l2-4h14l2 4M8 11h8"/></svg><span>库存管理</span></a></nav><div class="side-bottom">帮助中心<br><span style="font-family:DM Mono;font-size:10px">v3.0.0</span><button class="reset-demo" id="resetDemoData" type="button" aria-label="重置演示数据" title="重置演示数据">重置演示数据</button></div></aside>
+<main class="main"><header class="top"><div class="crumb"><b>商流供应链</b>&nbsp; / &nbsp;工作台</div><div class="top-right"><span class="date" id="currentDate"></span><button class="assistant-toggle" id="assistantToggle" type="button" aria-label="打开小商助手" aria-expanded="false" aria-controls="assistantPanel"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7v1.7"/><circle cx="12" cy="2" r="1.25" fill="currentColor" stroke="none"/><rect x="4.4" y="4.6" width="15.2" height="12.6" rx="4.4"/><circle cx="9.1" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.9" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><path d="M9.9 13.6c.7.7 1.4 1 2.1 1s1.4-.3 2.1-1"/><path d="M2.4 9.1v3.7M21.6 9.1v3.7"/><path d="M9.5 17.2v2.3M14.5 17.2v2.3"/></svg><i class="online-dot" aria-hidden="true"></i></button></div></header>
 <section class="view" id="dashboardView"><section class="headline"><div><h1>早上好，禾木家居</h1><p id="pendingSummary">这里是今天的经营概况，0 个待处理事项需要你的关注。</p></div></section>
 <section class="kpis"><div class="kpi"><label>待发货订单</label><strong id="kpiPending">0</strong></div><div class="kpi alert"><label>即将超时订单</label><strong id="kpiLate">0</strong></div><div class="kpi"><label>在售商品</label><strong id="kpiProducts">0</strong></div><div class="kpi"><label>本月已结算（净额）</label><span class="kpi-help" tabindex="0" aria-describedby="settleTip" aria-label="查看金额口径">!</span><span class="kpi-tip" id="settleTip" role="tooltip">销售额 — − 佣金 5% − 运费</span><strong id="kpiSettlement">¥0</strong></div></section>
 <div class="empty-guide" id="dashboardEmptyProducts" hidden><strong>还没有商品</strong><p>先到商品管理添加商品，开始管理您的商品与订单。</p><button type="button" id="goProductsFromEmpty">前往商品管理</button></div><section class="work"><div><article class="card"><div class="card-head"><h2>订单待办</h2></div><div class="tabs" id="dashboardOrderTabs"><button class="active" data-filter="pending">待发货 <b id="dashPendingCount">0</b></button><button data-filter="service">售后中 <b id="dashServiceCount">0</b></button></div><table><thead><tr><th>订单号</th><th>商品信息</th><th>剩余时间</th><th>状态</th></tr></thead><tbody id="dashboardOrderRows"><tr><td class="orderid">SO-250418-1023</td><td><div class="product">北欧原木餐椅 · 胡桃木</div><div class="meta">x 2 · 李**</div></td><td style="color:#c64e48;font-family:DM Mono">01:18:42</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0988</td><td><div class="product">简约实木书桌 1.2m</div><div class="meta">x 1 · 陈**</div></td><td style="color:#c64e48;font-family:DM Mono">03:42:11</td><td><span class="tag late">即将超时</span></td></tr><tr><td class="orderid">SO-250418-0947</td><td><div class="product">藤编收纳篮 · 大号</div><div class="meta">x 3 · 王**</div></td><td style="font-family:DM Mono">08:26:35</td><td><span class="tag wait">待发货</span></td></tr><tr><td class="orderid">SO-250417-0812</td><td><div class="product">云朵靠垫套 · 米白</div><div class="meta">x 2 · 刘**</div></td><td style="font-family:DM Mono">12:10:08</td><td><span class="tag progress">拣货中</span></td></tr></tbody></table></article><article class="card ledger"><h2>本周履约表现</h2><div class="barrow"><label>准时发货率</label><div class="bar"><i id="onTimeRateBar" style="width:0%"></i></div><span id="onTimeRateValue">0.0%</span><small id="onTimeRateTarget" class="rate-low" hidden>低于目标 95%</small></div><div class="barrow"><label>售后响应率</label><div class="bar"><i id="afterSalesRateBar" style="width:0%"></i></div><span id="afterSalesRateValue">0.0%</span><small id="afterSalesRateTarget" class="rate-low" hidden>低于目标 95%</small></div></article></div>
@@ -128,15 +158,19 @@
   </section>
 </div>
 <aside class="voice assistant-panel" id="assistantPanel" role="dialog" aria-modal="false" aria-label="小商助手" hidden>
-  <div class="card-head"><div><h2>小商 · 语音助手</h2><div class="runtime-metrics" id="runtimeMetrics">本次会话 0 轮对话 / 执行 0 次操作</div></div><div class="panel-actions"><button class="history-open" id="historyOpen" type="button">历史</button><button class="icon-btn" id="assistantMinimize" type="button" aria-label="收起助手"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12"/></svg></button></div></div>
+  <div class="card-head"><div><h2 class="bot-title"><span class="bot-mark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7v1.7"/><circle cx="12" cy="2" r="1.25" fill="currentColor" stroke="none"/><rect x="4.4" y="4.6" width="15.2" height="12.6" rx="4.4"/><circle cx="9.1" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.9" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><path d="M9.9 13.6c.7.7 1.4 1 2.1 1s1.4-.3 2.1-1"/><path d="M2.4 9.1v3.7M21.6 9.1v3.7"/><path d="M9.5 17.2v2.3M14.5 17.2v2.3"/></svg></span>小商 · 智能助手</h2><div class="runtime-metrics" id="runtimeMetrics">本次会话 0 轮对话 / 执行 0 次操作</div></div><div class="panel-actions"><button class="history-open" id="historyOpen" type="button">历史</button><button class="icon-btn" id="assistantMinimize" type="button" aria-label="收起助手"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12"/></svg></button></div></div>
   <div class="voice-body">
-    <div class="chat-history" id="chatHistory" aria-live="polite"><div class="welcome-message" id="assistantWelcome"><div class="welcome-avatar">小商</div><p>您好，我是小助手小商，请问有什么可以帮您？</p></div><div id="lateProactivePush" class="proactive-card" hidden></div></div>
+    <div class="chat-history" id="chatHistory" aria-live="polite"><div class="welcome-message" id="assistantWelcome"><div class="welcome-avatar bot"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7v1.7"/><circle cx="12" cy="2" r="1.25" fill="currentColor" stroke="none"/><rect x="4.4" y="4.6" width="15.2" height="12.6" rx="4.4"/><circle cx="9.1" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.9" cy="10.1" r="1.3" fill="currentColor" stroke="none"/><path d="M9.9 13.6c.7.7 1.4 1 2.1 1s1.4-.3 2.1-1"/><path d="M2.4 9.1v3.7M21.6 9.1v3.7"/><path d="M9.5 17.2v2.3M14.5 17.2v2.3"/></svg></div><p>您好，我是小助手小商，请问有什么可以帮您？</p></div><div id="lateProactivePush" class="proactive-card" hidden></div></div>
     <button type="button" class="stop-generation" id="stopGeneration" hidden>停止生成</button>
-    <div class="preset-title">快捷提问</div>
-    <div class="presets" aria-label="预设问题">
-      <button class="preset" type="button" data-question="我有哪些待发货订单？">查看待发货订单</button>
-      <button class="preset" type="button" data-question="哪些商品库存偏低？">检查低库存商品</button>
-      <button class="preset" type="button" data-question="本周经营表现怎么样？">查看经营表现</button>
+    <div class="preset-title">试试这样问</div>
+    <div class="presets chips-row" aria-label="常用问题">
+      <button class="preset" type="button" data-question="今天有什么要处理的？">今日简报</button>
+      <button class="preset" type="button" data-question="哪些商品快断货了？">断货预警</button>
+      <button class="preset" type="button" data-question="有订单快超时吗？">超时订单</button>
+      <button class="preset" type="button" data-question="这个月收入怎么样？">本月收入</button>
+      <button class="preset" type="button" data-question="哪些商品滞销？">滞销分析</button>
+      <button class="preset" type="button" data-question="什么时候能结算？">结算账期</button>
+      <button class="preset" type="button" data-question="你能做什么？">全部能力</button>
     </div>
     <div class="ask">
       <form id="assistantForm">
@@ -174,7 +208,17 @@
     const historyOpen=document.getElementById("historyOpen"),conversationDrawer=document.getElementById("conversationDrawer"),conversationList=document.getElementById("conversationList");
     const sendButton = document.getElementById("sendButton");
     let sessionRounds=0,executedActions=0,typingTimer=null,typingNode=null,typingReply=null;
-    function openAssistant(){assistantPanel.hidden=false;assistantToggle.setAttribute("aria-expanded","true");assistantToggle.classList.remove("has-unread");if(pendingServiceInsight){insertAssistantNotice(pendingServiceInsight,"insight");pendingServiceInsight=null;}if(pendingLatePush){pendingLatePush=false;const node=document.getElementById("lateProactivePush");node.hidden=false;node.innerHTML=`<button type="button" class="dismiss-push" aria-label="关闭" data-dismiss-push="lateProactivePush">×</button><div><span class="new-mark">新</span>检测到 ${orders.filter(isLate).length} 笔订单将在 2 小时内超时，已生成加急方案</div><div class="assistant-actions"><button type="button" class="primary" data-bulk-expedite="1">一键全部加急</button><button type="button" data-view-late="1">逐笔查看</button></div>`;}if(pendingLowStock){insertLowStockCard(pendingLowStock);pendingLowStock=null;}window.setTimeout(()=>input.focus(),80);}
+    let welcomePainted=false;
+    function paintWelcomeBriefing(){
+      if(welcomePainted)return;const w=document.getElementById("assistantWelcome");if(!w)return;
+      const h=new Date().getHours(),hi=h<11?"早上好":h<14?"中午好":h<19?"下午好":"晚上好";
+      const late=orders.filter(isLate).length,pending=ordersForFilter("pending").length,low=botStockRows().filter(function(r){return r.status==="在售"&&r.available<r.safety;}).length,parts=[];
+      if(late)parts.push(late+" 单快超时");if(pending)parts.push(pending+" 单待发货");if(low)parts.push(low+" 个 SKU 该补货");
+      const p=w.querySelector("p");
+      if(p)p.textContent=parts.length?(hi+"，我是小商。今天有 "+parts.join("、")+"，要我先处理哪件？"):(hi+"，我是小商。今天没有待处理事项，想看点经营数据吗？");
+      welcomePainted=true;
+    }
+    function openAssistant(){paintWelcomeBriefing();assistantPanel.hidden=false;assistantToggle.setAttribute("aria-expanded","true");assistantToggle.classList.remove("has-unread");if(pendingServiceInsight){insertAssistantNotice(pendingServiceInsight,"insight");pendingServiceInsight=null;}if(pendingLatePush){pendingLatePush=false;const node=document.getElementById("lateProactivePush");node.hidden=false;node.innerHTML=`<button type="button" class="dismiss-push" aria-label="关闭" data-dismiss-push="lateProactivePush">×</button><div><span class="new-mark">新</span>检测到 ${orders.filter(isLate).length} 笔订单将在 2 小时内超时，已生成加急方案</div><div class="assistant-actions"><button type="button" class="primary" data-bulk-expedite="1">一键全部加急</button><button type="button" data-view-late="1">逐笔查看</button></div>`;}if(pendingLowStock){insertLowStockCard(pendingLowStock);pendingLowStock=null;}window.setTimeout(()=>input.focus(),80);}
     function closeAssistant(){assistantPanel.hidden=true;assistantToggle.setAttribute("aria-expanded","false");assistantToggle.focus();}
     assistantToggle.addEventListener("click",()=>assistantPanel.hidden?openAssistant():closeAssistant());
     assistantMinimize.addEventListener("click",closeAssistant);
@@ -354,43 +398,186 @@
     function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
     function refreshWorkbench(){products=WorkbenchData.legacyProducts();orders=WorkbenchData.legacyOrders();renderProducts();renderOrders();renderCharts();renderKpis();const active=document.querySelector("#dashboardOrderTabs button.active");renderDashboardOrders(active?.dataset.filter||"pending");}
     function showToast(message,undoId=null){if(undoId){toast(message,{action:{label:"撤销",onClick:()=>{const id=String(undoId),fn=undoActions.get(id);if(fn){fn();undoActions.delete(id);toast("已撤销下架",{type:"info"});}}}});return;}toast(message);}
-    function mentionedProduct(question){return products.find(p=>question.includes(p.name))||null;}
-    function mentionedOrder(question){return orders.find(o=>question.includes(o.id))||orders.find(o=>question.includes(o.product.split(" · ")[0]))||null;}
+    function mentionedProduct(question){let hit=products.find(function(p){return question.indexOf(p.name)>=0;});if(hit){lastProductName=hit.name;return hit;}hit=products.find(function(p){const sh=p.name.slice(-2);return sh.length===2&&question.indexOf(sh)>=0;});if(hit){lastProductName=hit.name;return hit;}if(lastProductName&&/它|这个|那个|该商品|刚才/.test(question)){const p=products.find(function(x){return x.name===lastProductName;});if(p)return p;}return null;}
+    function mentionedOrder(question){let hit=orders.find(function(o){return question.indexOf(o.id)>=0;});if(!hit)hit=orders.find(function(o){return question.indexOf(String(o.product||"").split(" · ")[0])>=0;});if(hit){lastOrderId=hit.id;return hit;}if(lastOrderId&&/它|这个|那个|刚才/.test(question)){const o=orders.find(function(x){return x.id===lastOrderId;});if(o)return o;}return null;}
     function moneyReply(){const tb=WorkbenchData.getTables(),count=tb.orders.filter(o=>o.status==="已完成").length,st=tb.settlements.reduce((a,s)=>({gross:a.gross+Number(s.gross||0),commission:a.commission+Number(s.commission||0),shipping:a.shipping+Number(s.shippingFee||0),net:a.net+Number(s.net||0)}),{gross:0,commission:0,shipping:0,net:0});return {type:"text",text:`本月已完成 ${count} 笔订单：销售额 ${formatMoney(st.gross)}，佣金 5% ${formatMoney(st.commission)}，运费 ${formatMoney(st.shipping)}，净结算 ${formatMoney(st.net)}。`};}
-    function normalizeQuestion(raw){
-      let q=String(raw||"");
-      const fix=[
-        [/收人|收如|收⼊|售入|手入|收λ|收乳/g,"收入"],
-        [/营入|盈收|银收|营収|盈入|英收/g,"营收"],
-        [/入裤|入厍|如库|入哭|入库单/g,"入库"],
-        [/采狗|采构|踩购|采杓|才购/g,"采购"],
-        [/缺贷|炔货|缺或|却货/g,"缺货"],
-        [/定单|订丹|顶单/g,"订单"]
-      ];
-      fix.forEach(([re,to])=>{q=q.replace(re,to);});
-      return q;
-    }
-    function intentFor(question){
-      if(/缺货|断货|没货|无货|售罄|库存不足/.test(question)){const t=WorkbenchData.getTables(),rows=t.stock.map(s=>{const p=t.products.find(x=>x.sku===s.sku);return{sku:s.sku,name:p?p.name:s.sku,available:s.onHand-s.reserved,safety:s.safetyStock};}),zero=rows.filter(r=>r.available<=0),low=rows.filter(r=>r.available>0&&r.available<r.safety),parts=[];if(zero.length)parts.push(`${zero.length} 个已缺货（${zero.map(r=>r.name+" · 可售 0").join("、")}）`);if(low.length)parts.push(`${low.length} 个低于安全库存（${low.map(r=>r.name+" · 可售 "+r.available+" / 安全 "+r.safety).join("、")}）`);return {type:"text",text:parts.length?`当前 ${parts.join("；")}。建议优先补货。`:"当前没有缺货商品，所有 SKU 可售库存都高于安全库存。"};}
-      if(/入库|采购|进货|补货|加库存|添库存/.test(question)){return {type:"action",text:"我来打开采购入库单，选择商品并填写入库数量。",action:"purchaseIn"};}
-      if(/创建|新建|新增/.test(question)&&/商品|产品|新品|一个/.test(question)){const m=question.match(/(?:名为|叫|名称为)\s*[「「"“]?([^」」"”。，,]+)[」」"”]?/);return {type:"action",text:"我来打开新建商品表单，你可以检查并补全商品信息。",action:"createProduct",payload:{name:m?.[1]?.trim()||""}};}
-      if(/下架/.test(question)){const product=mentionedProduct(question);return product?{type:"confirm",text:`确认将「${product.name}」下架吗？下架后商品会从在售商品统计中移除，你可以在 5 秒内撤销。`,action:"unlistProduct",payload:{productId:product.id,productName:product.name}}:{type:"text",text:"我没找到你提到的商品。请提供完整商品名称，例如「把羊毛地毯下架」。"};}
-      if(/加急/.test(question)){const order=mentionedOrder(question)||orders.find(o=>isUnfinished(o));return order?{type:"confirm",text:`确认将订单 ${order.id} 标记为加急吗？`,action:"expediteOrder",payload:{orderId:order.id}}:{type:"text",text:"当前没有可加急的订单。"};}
-      if(/发货|发出订单/.test(question)){const order=mentionedOrder(question)||orders.find(o=>isUnfinished(o));return order?{type:"confirm",text:`确认订单 ${order.id} 已完成发货吗？确认后会从待处理列表移除。`,action:"shipOrder",payload:{orderId:order.id}}:{type:"text",text:"当前没有可发货的订单。"};}
-      if(/超时|逾期|即将超时/.test(question)){const list=orders.filter(isLate);if(list.length===0)return {type:"text",text:"当前没有即将超时的订单，全部在履约时限内。"};if(list.length===1)return {type:"text",text:"有 1 笔订单剩余时间不足 2 小时，建议优先处理。",payload:{orders:list}};return {type:"text",text:`有 ${list.length} 笔订单剩余时间不足 2 小时。`,payload:{orders:list}};}
-      if(/结算|销售额|本月金额|回款|营收|收入|业绩|利润|经营情况|赚|收益|流水|进账|到账|营业额|月收|挣/.test(question))return moneyReply();
-      if(/库存|在售商品|商品数量|商品有哪些/.test(question)){const list=products.filter(p=>p.status==="在售");return {type:"text",text:`当前有 ${list.length} 个在售商品。`,payload:{products:list}};}
-      if(/订单|待发货|待处理/.test(question)){const list=ordersForFilter("pending");return {type:"text",text:`当前有 ${list.length} 笔全部待处理订单，其中 ${list.filter(isLate).length} 笔即将超时。`,payload:{orders:list}};}
-      if(/(?:这个|本|上|当)?月/.test(question)&&/(?:多少|怎么样|咋样|如何|情况|好不好)/.test(question))return moneyReply();
-      return {type:"text",text:"抱歉，这句话我还没学会。你可以这样问：「有哪些缺货商品」「我要入库」「这个月营收多少」「查看待发货订单」。"};
-    }
+    let lastProductName=null,lastOrderId=null;
+const BOT_TYPOS=[
+[/收人|收如|收⼊|售入|手入|收λ|收乳|受入/g,"收入"],
+[/营入|盈收|银收|营収|盈入|英收/g,"营收"],
+[/入裤|入厍|如库|入哭|入库单/g,"入库"],
+[/采狗|采构|踩购|采杓|才购/g,"采购"],
+[/缺贷|炔货|缺或|却货/g,"缺货"],
+[/定单|订丹|顶单/g,"订单"],
+[/桑品|商平/g,"商品"],
+[/受后|售后服/g,"售后"]
+];
+const BOT_FILLER=[/请问一下|请问|麻烦你|麻烦|帮我看看|帮我查查|帮我查|帮我|帮忙|我想知道|我想问一下|我想问|想问一下|想问|能不能|可不可以|可以帮我|你帮我|给我看看|看一下|查一下|查查|看看|告诉我/g];
+function rewriteQuery(raw){
+  let q=String(raw||"");
+  BOT_FILLER.forEach(function(re){q=q.replace(re,"");});
+  BOT_TYPOS.forEach(function(pair){q=q.replace(pair[0],pair[1]);});
+  q=q.replace(/[，。？！?!、；;：:~\s…]/g,"");
+  q=q.replace(/还有多少货|剩多少货|剩余多少|还剩多少/g,"库存");
+  q=q.replace(/^(我要|我想|我需要|要|请)/,"");
+  return q;
+}
+function botStockRows(){
+  const tb=WorkbenchData.getTables();
+  return tb.stock.map(function(s){
+    const p=tb.products.find(function(x){return x.sku===s.sku;})||{};
+    return {sku:s.sku,name:p.name||s.sku,status:p.status||"",onHand:s.onHand,reserved:s.reserved,available:s.onHand-s.reserved,safety:s.safetyStock};
+  });
+}
+function capabilityReply(){
+  return {type:"text",text:"我现在能接管这些事，点一下就直接办：",payload:{capabilities:[
+    {t:"今日简报",d:"今天该先处理什么",ask:"今天有什么要处理的"},
+    {t:"断货预警",d:"哪些 SKU 该补货",ask:"哪些商品快断货了"},
+    {t:"超时订单",d:"哪几单快来不及",ask:"有订单快超时吗"},
+    {t:"批量发货",d:"一次处理待发货",ask:"帮我把待发货的都发了"},
+    {t:"滞销分析",d:"哪些货压着不动",ask:"哪些商品滞销"},
+    {t:"结算账期",d:"钱什么时候到",ask:"什么时候能结算"},
+    {t:"售后评价",d:"退款和差评情况",ask:"售后情况怎么样"},
+    {t:"采购入库",d:"直接开入库单",ask:"我要入库"}
+  ]}};
+}
+function briefingReply(){
+  const tb=WorkbenchData.getTables();
+  const late=orders.filter(isLate);
+  const pending=ordersForFilter("pending");
+  const low=botStockRows().filter(function(r){return r.status==="在售"&&r.available<r.safety;});
+  const as=tb.afterSales.filter(function(a){return a.status!=="已完成"&&a.status!=="已关闭";}).length;
+  const rows=[];
+  if(late.length)rows.push({lv:"bad",k:"超时",t:late.length+" 笔订单 2 小时内超时，最早是 "+late[0].id,ask:"有订单快超时吗"});
+  if(pending.length)rows.push({lv:"warn",k:"待发货",t:pending.length+" 笔订单等你发货",ask:"我有哪些待发货订单"});
+  if(low.length)rows.push({lv:"warn",k:"库存",t:low.length+" 个 SKU 低于安全库存："+low.slice(0,3).map(function(r){return r.name;}).join("、"),ask:"哪些商品快断货了"});
+  if(as)rows.push({lv:"",k:"售后",t:as+" 笔售后还没处理完",ask:"售后情况怎么样"});
+  if(!rows.length)rows.push({lv:"good",k:"状态",t:"今天没有待处理事项，经营状况正常",ask:"这个月收入怎么样"});
+  return {type:"text",text:"我扫了一遍今天的数据，有 "+rows.length+" 件事值得你看一眼：",payload:{briefing:rows}};
+}
+function lowStockReply(){
+  const rows=botStockRows().filter(function(r){return r.status==="在售";});
+  const zero=rows.filter(function(r){return r.available<=0;});
+  const low=rows.filter(function(r){return r.available>0&&r.available<r.safety;});
+  if(!zero.length&&!low.length)return {type:"text",text:"当前没有缺货商品，所有在售 SKU 的可售库存都高于安全库存。"};
+  let text="";
+  if(zero.length)text+="已缺货 "+zero.length+" 个："+zero.map(function(r){return r.name;}).join("、")+"。";
+  if(low.length)text+="低于安全库存 "+low.length+" 个："+low.map(function(r){return r.name+"（可售 "+r.available+" / 安全 "+r.safety+"）";}).join("、")+"。";
+  const plan=zero.concat(low).slice(0,3).map(function(r){return r.name+" 补 "+Math.max(r.safety-r.available,1)+" 件";}).join("；");
+  text+="按安全库存倒推，建议补货："+plan+"。";
+  return {type:"text",text:text,payload:{capabilities:[
+    {t:"去开入库单",d:"选品填数量即可",ask:"我要入库"},
+    {t:"看滞销商品",d:"先清货再补货",ask:"哪些商品滞销"}
+  ]}};
+}
+function slowMovingReply(){
+  const sold={};
+  orders.forEach(function(o){
+    const n=String(o.product||"").split(" · ")[0];
+    if(o.status==="已完成")sold[n]=(sold[n]||0)+Number(o.qty||1);
+  });
+  const rows=botStockRows().filter(function(r){return r.status==="在售";}).map(function(r){
+    return {name:r.name,sold:sold[r.name]||0,stock:r.onHand};
+  }).sort(function(a,b){return a.sold-b.sold;});
+  const dead=rows.filter(function(r){return r.sold===0;});
+  const slow=rows.filter(function(r){return r.sold>0;}).slice(0,2);
+  let text="";
+  if(dead.length)text+="完全没动销的 "+dead.length+" 个："+dead.map(function(r){return r.name+"（在库 "+r.stock+"）";}).join("、")+"。";
+  if(slow.length)text+="动销最慢的还有："+slow.map(function(r){return r.name+"（已卖 "+r.sold+" 件）";}).join("、")+"。";
+  text+="建议先给滞销品做组合促销或调低安全库存，别继续压货。";
+  return {type:"text",text:text,payload:{capabilities:[{t:"看经营数据",d:"对比本月销售额",ask:"这个月收入怎么样"},{t:"查库存明细",d:"在库和锁定数量",ask:"库存还有多少"}]}};
+}
+function afterSalesReply(){
+  const tb=WorkbenchData.getTables();
+  const open=tb.afterSales.filter(function(a){return a.status!=="已完成"&&a.status!=="已关闭";});
+  const total=tb.reviews.length;
+  const good=tb.reviews.filter(function(r){return Number(r.rating)>=4;}).length;
+  const rate=total?Math.round(good/total*100):0;
+  let text="售后待处理 "+open.length+" 笔";
+  if(open.length)text+="："+open.map(function(a){return a.orderId+"（"+a.type+"·"+a.status+"）";}).join("、");
+  text+="。口碑方面，累计 "+total+" 条评价，好评率 "+rate+"%。";
+  if(rate<95)text+="低于 95% 的目标，建议优先跟这两笔售后，避免差评扩散。";
+  return {type:"text",text:text,payload:{orders:open.length?orders.filter(function(o){return open.some(function(a){return a.orderId===o.id;});}):null}};
+}
+function settlementReply(){
+  const tb=WorkbenchData.getTables();
+  const st=tb.settlements[tb.settlements.length-1];
+  if(!st)return {type:"text",text:"还没有生成结算单，本月订单完成后会自动进入结算。"};
+  const text="最近一期结算单是 "+st.period+"，当前状态「"+st.status+"」。销售额 "+formatMoney(st.gross)+"，扣佣金 5% "+formatMoney(st.commission)+"、运费 "+formatMoney(st.shippingFee)+"，应结 "+formatMoney(st.net)+"。账期规则：订单完成后 T+7 生成结算单，确认后 3 个工作日打款。";
+  return {type:"text",text:text,payload:{capabilities:[{t:"看本月收入",d:"含佣金和运费明细",ask:"这个月收入怎么样"}]}};
+}
+function lateReply(){
+  const list=orders.filter(isLate);
+  if(!list.length)return {type:"text",text:"当前没有即将超时的订单，全部在履约时限内。"};
+  const sorted=list.slice().sort(function(a,b){return (a.remainingSeconds||0)-(b.remainingSeconds||0);});
+  return {type:"text",text:"有 "+list.length+" 笔订单剩余时间不足 2 小时，最紧的是 "+sorted[0].id+"（剩 "+remainingLabel(sorted[0])+"）。",payload:{orders:sorted}};
+}
+function batchShipReply(){
+  const list=ordersForFilter("pending");
+  if(!list.length)return {type:"text",text:"当前没有待发货订单，不用处理。"};
+  return {type:"confirm",text:"当前有 "+list.length+" 笔待发货订单（"+list.map(function(o){return o.id;}).join("、")+"）。确认后我会统一标记为已发货并生成顺丰运单。",action:"batchShip",payload:{}};
+}
+function orderReply(){
+  const list=ordersForFilter("pending");
+  return {type:"text",text:"当前有 "+list.length+" 笔待发货订单，其中 "+list.filter(isLate).length+" 笔即将超时。",payload:{orders:list}};
+}
+function stockReply(){
+  const rows=botStockRows().filter(function(r){return r.status==="在售";});
+  const total=rows.reduce(function(a,r){return a+r.onHand;},0);
+  const locked=rows.reduce(function(a,r){return a+r.reserved;},0);
+  return {type:"text",text:"在售 "+rows.length+" 个 SKU，在库共 "+total+" 件，已锁定 "+locked+" 件，可售 "+(total-locked)+" 件。",payload:{capabilities:[{t:"看低库存",d:"哪些该补货",ask:"哪些商品快断货了"},{t:"看库存明细",d:"进销存流水",ask:"今天有什么要处理的"}]}};
+}
+function fallbackReply(cands){
+  let list=(cands||[]).slice(0,3).map(function(r){return {t:r.label,d:r.sample,ask:r.sample};});
+  if(list.length<2){
+    list=[{t:"今日简报",d:"今天该先做什么",ask:"今天有什么要处理的"},{t:"这个月赚了多少",d:"销售额与净结算",ask:"这个月收入怎么样"},{t:"哪些货快断货",d:"低库存 SKU",ask:"哪些商品快断货了"}];
+  }
+  return {type:"text",text:"这句我没完全听懂。你可以点下面任意一个，我会直接办：",payload:{capabilities:list}};
+}
+const QUERY_RULES=[
+ {id:"capability",label:"小商能做什么",sample:"你能做什么",kw:["能做什么","会做什么","会什么","有什么功能","怎么用","可以干嘛","能帮我","帮助","你是谁"],answer:capabilityReply},
+ {id:"briefing",label:"今天先处理什么",sample:"今天有什么要处理的",kw:["简报","早报","日报","今天要做什么","要处理什么","有什么要处理","重点","先做什么","概览","今日概况"],answer:briefingReply},
+ {id:"lowStock",label:"哪些货快断货",sample:"哪些商品快断货了",kw:["缺货","断货","没货","无货","售罄","库存不足","低库存","库存偏低","该补货","要补货","补货提醒","补货"],answer:lowStockReply},
+ {id:"slowMoving",label:"哪些货卖不动",sample:"哪些商品滞销",kw:["滞销","卖不动","积压","动销","周转","卖得差","销量低","没人买"],answer:slowMovingReply},
+ {id:"afterSales",label:"售后和评价",sample:"售后情况怎么样",kw:["售后","退款","退货","换货","投诉","差评","好评率","评价","退单"],answer:afterSalesReply},
+ {id:"settlement",label:"结算和账期",sample:"什么时候能结算",kw:["账期","对账","打款","几号结","结算明细","什么时候结算","什么时候能结算","什么时候到账","多久结","结算单","结算周期"],answer:settlementReply},
+ {id:"late",label:"有没有快超时的单",sample:"有订单快超时吗",kw:["超时","逾期","来不及","时限","快到期","催单"],answer:lateReply},
+ {id:"batchShip",label:"批量发货",sample:"帮我把待发货的都发了",kw:["批量发货","全部发货","一起发","都发了","统一发","一次性发","都发走"],answer:batchShipReply},
+ {id:"money",label:"这个月赚了多少",sample:"这个月收入怎么样",kw:["营收","收入","收益","进账","到账","流水","营业额","业绩","利润","销售额","结算","回款","赚","挣","钱","卖了"],answer:moneyReply},
+ {id:"order",label:"待发货订单",sample:"我有哪些待发货订单",kw:["订单","待发","待处理","单子","查单","待收货","待付款"],answer:orderReply},
+ {id:"stock",label:"库存还有多少",sample:"库存还有多少",kw:["库存","在库","可售","剩多少","还有多少"],answer:stockReply}
+];
+function classifyQuery(q){
+  const scored=QUERY_RULES.map(function(rule){
+    let sc=0;
+    rule.kw.forEach(function(k){if(q.indexOf(k)>=0)sc+=k.length>=3?2:1;});
+    return {rule:rule,sc:sc};
+  }).filter(function(x){return x.sc>0;}).sort(function(a,b){return b.sc-a.sc;});
+  return {best:scored[0]||null,candidates:scored.map(function(x){return x.rule;})};
+}
+function isAskSentence(q){return /哪些|什么|多少|几笔|几个|有没有|吗|呢|情况|列表|查询|查看|统计|排行|明细|怎么样|如何/.test(q);}
+function intentFor(rawQuestion){
+  const question=rewriteQuery(rawQuestion);
+  if(question){
+    if(/下架|上架/.test(question)&&!isAskSentence(question)){const p=mentionedProduct(question);return p?{type:"confirm",text:"确认把「"+p.name+"」"+(/上架/.test(question)?"上架":"下架")+"吗？下架后不计入在售统计，5 秒内可撤销。",action:"unlistProduct",payload:{productId:p.id,productName:p.name}}:{type:"text",text:"我没找到这个商品。说完整名字或两个字的关键词就行，比如「把地毯下架」。",payload:{capabilities:[{t:"看商品列表",d:"查在售商品",ask:"库存还有多少"}]}};}
+    if(/加急/.test(question)&&!isAskSentence(question)){const o=mentionedOrder(question)||orders.find(isUnfinished);return o?{type:"confirm",text:"确认把订单 "+o.id+" 标记为加急吗？",action:"expediteOrder",payload:{orderId:o.id}}:{type:"text",text:"当前没有可加急的订单。"};}
+    if(/发货|发出/.test(question)&&!/批量|全部|一起|都发|统一/.test(question)&&!isAskSentence(question)){const o=mentionedOrder(question)||orders.find(isUnfinished);return o?{type:"confirm",text:"确认订单 "+o.id+" 已经发货了吗？确认后会从待处理里移走。",action:"shipOrder",payload:{orderId:o.id}}:{type:"text",text:"当前没有可发货的订单。"};}
+    if(/入库|采购单|进货|加库存|添库存/.test(question)&&!isAskSentence(question))return {type:"action",text:"我来打开采购入库单，选商品、填数量就行。",action:"purchaseIn"};
+    if(/创建|新建|新增/.test(question)&&/商品|产品|新品/.test(question)){const m=question.match(/(?:名为|叫|名称为)\s*[「「"“]?([^」」"”。，,]+)[」」"”]?/);return {type:"action",text:"我来打开新建商品表单，你可以检查并补全信息。",action:"createProduct",payload:{name:m?m[1].trim():""}};}
+  }
+  const c=classifyQuery(question);
+  if(c.best)return c.best.rule.answer(question);
+  return fallbackReply(c.candidates);
+}
+
     function renderOrderCards(list){if(!list?.length)return '<p class="reply-detail">没有符合条件的订单。</p>';return list.map(o=>{const late=isLate(o),label=orderStatus(o);return `<div class="order-card"><div class="order-card-head"><span class="order-card-id">${escapeHtml(o.id)}</span><span class="tag ${late?"late":label==="售后中"?"service":"wait"}">${escapeHtml(label)}</span></div><p>${escapeHtml(o.product)} · 剩余时间：<em style="${late?"color:#c64e48;font-style:normal":""}">${escapeHtml(remainingLabel(o))}</em>${late?' <span class="late-mini">即将超时</span>':""}</p><div class="assistant-actions"><button type="button" class="primary" data-order-action="expedite" data-order-id="${escapeHtml(o.id)}">加急</button><button type="button" data-order-action="ship" data-order-id="${escapeHtml(o.id)}">发货</button></div></div>`;}).join("");}
-    function renderReplyHtml(reply){let html=`<p>${escapeHtml(reply.text)}</p>`;if(reply.payload?.orders)html+=renderOrderCards(reply.payload.orders);if(reply.payload?.products?.length)html+='<p class="reply-detail">'+reply.payload.products.map(p=>escapeHtml(p.name)+"（库存 "+escapeHtml(p.stock)+"）").join("；")+"</p>";if(reply.type==="confirm")html+='<div class="assistant-actions"><button class="primary" type="button" data-confirm-action="'+escapeHtml(reply.action)+'" data-confirm-payload="'+escapeHtml(JSON.stringify(reply.payload||{}))+'">确认</button><button type="button" data-cancel-action="1">取消</button></div>';return html;}
+    function renderReplyHtml(reply){let html=`<p>${escapeHtml(reply.text)}</p>`;if(reply.payload&&reply.payload.briefing&&reply.payload.briefing.length){html+='<div class="briefing">'+reply.payload.briefing.map(function(r){return '<div class="brief-row '+(r.lv||"")+'"><b>'+escapeHtml(r.k)+'</b><div>'+escapeHtml(r.t)+'</div></div>';}).join("")+'</div>';}if(reply.payload&&reply.payload.capabilities&&reply.payload.capabilities.length){html+='<div class="cap-grid">'+reply.payload.capabilities.map(function(c){return '<button class="cap" type="button" data-ask="'+escapeHtml(c.ask)+'"><b>'+escapeHtml(c.t)+'</b><span>'+escapeHtml(c.d)+'</span></button>';}).join("")+'</div>';}if(reply.payload?.orders)html+=renderOrderCards(reply.payload.orders);if(reply.payload?.products?.length)html+='<p class="reply-detail">'+reply.payload.products.map(p=>escapeHtml(p.name)+"（库存 "+escapeHtml(p.stock)+"）").join("；")+"</p>";if(reply.rewritten)html+='<em class="rewrite-note">我理解成：'+escapeHtml(reply.rewritten)+'</em>';if(reply.type==="confirm")html+='<div class="assistant-actions"><button class="primary" type="button" data-confirm-action="'+escapeHtml(reply.action)+'" data-confirm-payload="'+escapeHtml(JSON.stringify(reply.payload||{}))+'">确认</button><button type="button" data-cancel-action="1">取消</button></div>';return html;}
     function stopTyping(){if(typingTimer)window.clearInterval(typingTimer);typingTimer=null;stopGenerationButton.hidden=true;if(typingNode&&typingReply){typingNode.textContent=typingNode.textContent+"（已停止生成）";}typingNode=null;typingReply=null;}
     function typeReply(reply,node){if(typingTimer)window.clearInterval(typingTimer);typingReply=reply;typingNode=node;node.textContent="";let i=0;stopGenerationButton.hidden=false;typingTimer=window.setInterval(()=>{if(i<reply.text.length){node.textContent+=reply.text.charAt(i++);scrollToLatest();return;}window.clearInterval(typingTimer);typingTimer=null;node.innerHTML=renderReplyHtml(reply);typingNode=null;typingReply=null;stopGenerationButton.hidden=true;scrollToLatest();saveConversation();},22);}
     function openCreateProduct(payload={}){showView("products");openProductModal();if(payload.name)productForm.elements.name.value=payload.name;executedActions++;updateRuntimeMetrics();showToast("已打开新建商品表单");}
     function executeAction(action,payload={}){
       if(action==="createProduct"){openCreateProduct(payload);return;}
+      if(action==="batchShip"){const tb=WorkbenchData.getTables(),pend=tb.orders.filter(function(o){return o.status==="待发货";}),nowIso=new Date().toISOString();pend.forEach(function(o){o.status="待收货";o.shippedAt=nowIso;if(!tb.shipments.some(function(x){return x.orderId===o.id;}))tb.shipments.push({id:"SH-"+o.id,orderId:o.id,carrier:"顺丰速运",trackingNo:"SF"+String(o.id).replace(/\D/g,""),shippedAt:nowIso,signedAt:null,isOnTime:true});});WorkbenchData.save(tb);orders=WorkbenchData.legacyOrders();refreshWorkbench();executedActions+=pend.length;updateRuntimeMetrics();showToast("已批量发货 "+pend.length+" 笔，运单号已生成");return;}
       if(action==="purchaseIn"){closeAssistant();document.dispatchEvent(new CustomEvent("wb:open-purchase"));executedActions++;updateRuntimeMetrics();return;}
       if(action==="unlistProduct"){const p=products.find(x=>String(x.id)===String(payload.productId));if(!p)return;const old=p.status;p.status="下架";saveState();refreshWorkbench();executedActions++;updateRuntimeMetrics();showToast("已下架",String(p.id));undoActions.set(String(p.id),()=>{p.status=old;saveState();refreshWorkbench();});return;}
       const order=orders.find(o=>o.id===payload.orderId);if(!order)return;
@@ -402,13 +589,15 @@
     function sendMessage(question=input.value.trim()){
       if(!question){input.focus();return;}if(typingTimer)stopTyping();
       addMessage(question,"user");input.value="";syncSendState();sessionRounds++;updateRuntimeMetrics();
-      const assistantReply=intentFor(normalizeQuestion(question));
+      const assistantReply=intentFor(question);
+      try{const rq=rewriteQuery(question);if(rq&&rq!==String(question).replace(/\s+/g,""))assistantReply.rewritten=rq;}catch(e){}
       if(assistantReply.type==="action"){const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);const original=assistantReply;const wait=window.setInterval(()=>{if(!typingTimer){window.clearInterval(wait);if(node.isConnected&&!node.textContent.includes("（已停止生成）"))executeAction(original.action,original.payload);}},30);scrollToLatest();return;}
       const node=document.createElement("div");node.className="message assistant";history.appendChild(node);typeReply(assistantReply,node);scrollToLatest();
     }
     stopGenerationButton.addEventListener("click",stopTyping);
     history.addEventListener("click",event=>{
-      const confirmButton=event.target.closest("[data-confirm-action]");if(confirmButton){let payload={};try{payload=JSON.parse(confirmButton.dataset.confirmPayload||"{}");}catch(e){}const action=confirmButton.dataset.confirmAction;confirmButton.closest(".message").innerHTML='<p>已确认，正在执行操作…</p>';executeAction(action,payload);confirmButton.closest(".message").innerHTML='<p>操作已执行。</p>';return;}
+      const askCard=event.target.closest("[data-ask]");if(askCard){event.preventDefault();if(askCard.dataset.ask)sendMessage(askCard.dataset.ask);return;}
+      const confirmButton=event.target.closest("[data-confirm-action]");if(confirmButton){let payload={};try{payload=JSON.parse(confirmButton.dataset.confirmPayload||"{}");}catch(e){}const action=confirmButton.dataset.confirmAction;const msgEl=confirmButton.closest(".message");msgEl.innerHTML='<p>已确认，正在执行操作…</p>';executeAction(action,payload);if(msgEl.isConnected)msgEl.innerHTML='<p>操作已执行。</p>';return;}
       if(event.target.closest("[data-cancel-action]")){event.target.closest(".message").innerHTML="<p>已取消，没有执行任何操作。</p>";return;}
       const orderButton=event.target.closest("[data-order-action]");if(orderButton){executeAction(orderButton.dataset.orderAction==="expedite"?"expediteOrder":"shipOrder",{orderId:orderButton.dataset.orderId});return;}
     });
