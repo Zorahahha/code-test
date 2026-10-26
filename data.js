@@ -17,6 +17,21 @@ function seed(){const stock=products.map(p=>({sku:p.sku,onHand:0,reserved:0,safe
 const orders=seeds.map(([id,buyer,sku,qty,status,offset,remainingSeconds])=>{const p=products.find(x=>x.sku===sku),paid=!["待付款","已取消"].includes(status),shipped=["待收货","已完成"].includes(status),signed=status==="已完成";return{id,buyer,items:[{sku,qty,price:p.price}],amount:p.price*qty,status,createdAt:iso(offset),paidAt:paid?iso(offset-60000):null,promisedShipAt:paid&&!shipped&&remainingSeconds!=null?new Date(now+remainingSeconds*1000).toISOString():null,shippedAt:shipped?iso(offset-1800000):null,signedAt:signed?iso(offset-900000):null,remainingSeconds};});
 orders.push({id:"SO-261018-1013",buyer:"许**",items:[{sku:"SKU-BEDDING-01",qty:1,price:459}],amount:459,status:"售后中",createdAt:iso(691200000),paidAt:iso(691260000),promisedShipAt:null,shippedAt:iso(689400000),signedAt:null,remainingSeconds:null});
 orders.push({id:"SO-261017-1014",buyer:"何**",items:[{sku:"SKU-LAMP-01",qty:1,price:279}],amount:279,status:"已取消",createdAt:iso(777600000),paidAt:null,promisedShipAt:null,shippedAt:null,signedAt:null,remainingSeconds:null});
+const makeDone=(id,buyer,lines,offset)=>{const items=lines.map(([sku,qty])=>({sku,qty,price:products.find(p=>p.sku===sku).price})),amount=items.reduce((sum,i)=>sum+i.price*i.qty,0),createdAt=iso(offset);return{id,buyer,items,amount,status:"已完成",createdAt,paidAt:iso(offset-60000),promisedShipAt:null,shippedAt:iso(offset-1800000),signedAt:iso(offset-900000),remainingSeconds:null};};
+orders.push(
+makeDone("SO-261026-1015","客户15",[["SKU-DESK-01",2],["SKU-BEDDING-01",1]],7200000),
+makeDone("SO-261026-1016","客户16",[["SKU-DESK-01",2],["SKU-CHAIR-01",1]],14400000),
+makeDone("SO-261026-1017","客户17",[["SKU-DESK-01",2],["SKU-RUG-01",1]],28800000),
+makeDone("SO-261026-1018","客户18",[["SKU-DESK-01",1],["SKU-RUG-01",2],["SKU-BEDDING-01",1]],43200000),
+makeDone("SO-261025-1019","客户19",[["SKU-DESK-01",2],["SKU-RACK-01",1]],72000000),
+makeDone("SO-261025-1020","客户20",[["SKU-DESK-01",2],["SKU-VASE-01",1],["SKU-CHAIR-01",1]],108000000),
+makeDone("SO-261024-1021","客户21",[["SKU-DESK-01",1],["SKU-BEDDING-01",2],["SKU-RUG-01",1]],172800000),
+makeDone("SO-261024-1022","客户22",[["SKU-DESK-01",2],["SKU-CUSHION-01",2],["SKU-RACK-01",1]],216000000),
+makeDone("SO-261023-1023","客户23",[["SKU-DESK-01",2],["SKU-BASKET-01",3],["SKU-VASE-01",1]],259200000),
+makeDone("SO-261023-1024","客户24",[["SKU-DESK-01",1],["SKU-RUG-01",2],["SKU-CHAIR-01",1]],302400000),
+makeDone("SO-261022-1025","客户25",[["SKU-DESK-01",2],["SKU-BEDDING-01",1],["SKU-RACK-01",1]],388800000),
+makeDone("SO-261020-1026","客户26",[["SKU-DESK-01",2],["SKU-RUG-01",1],["SKU-CUSHION-01",2]],518400000)
+);
 const shipments=[],afterSales=[],reviews=[],settlements=[],stockMovements=[];
 orders.forEach(o=>{if(["待收货","已完成","售后中"].includes(o.status))shipments.push({id:"SH-"+o.id,orderId:o.id,carrier:"顺丰速运",trackingNo:"SF"+o.id.replace(/\D/g,""),shippedAt:o.shippedAt,signedAt:o.signedAt,isOnTime:true});if(o.status==="售后中")afterSales.push({id:"AS-"+o.id,orderId:o.id,type:"换货",reason:"商品需要换货",status:"处理中",createdAt:o.createdAt,respondedAt:iso(600000),closedAt:null});});
 const done=orders.filter(o=>o.status==="已完成"),ratings=[5,5,4,5,4,3,5,4,5,2,4,5,3,4,5];for(let i=0;i<15;i++){const o=done[i%done.length];reviews.push({id:"RV-"+String(i+1).padStart(3,"0"),orderId:o.id,sku:o.items[0].sku,rating:ratings[i],content:["做工不错，包装完整","符合预期，发货很快","整体满意，细节可以再提升"][i%3],createdAt:iso((i+1)*3600000)});}
