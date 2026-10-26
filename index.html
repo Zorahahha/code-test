@@ -161,7 +161,7 @@
     }
 
     function showView(viewName) { if(!document.getElementById(`${viewName}View`))viewName="dashboard"; views.forEach(view=>{view.hidden=view.id!==`${viewName}View`;}); navLinks.forEach(link=>link.classList.toggle("active",link.dataset.view===viewName)); const hash="#/"+viewName;if(location.hash!==hash)window.history.replaceState(null,"",hash); }
-    function routeFromHash(){const name=location.hash.replace(/^#\/?/,"")||"dashboard";showView(["dashboard","products","orders","analytics"].includes(name)?name:"dashboard");}
+    function routeFromHash(){const name=location.hash.replace(/^#\/?/,"")||"dashboard";showView(["dashboard","products","orders","analytics","inventory"].includes(name)?name:"dashboard");}
 
     function clearErrors() { productForm.querySelectorAll('.field').forEach(field => { field.classList.remove('error'); field.querySelector('.error-text').textContent = ''; }); }
     function openProductModal(product = null) {
@@ -348,4 +348,4 @@
       else recognition.start();
     });
   })();
-</script></body></html>
+</script><script src="features.js"></script></body></html>
