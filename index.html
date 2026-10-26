@@ -68,6 +68,18 @@
 </section>
 <section class="view" id="analyticsView" hidden><div class="analysis-head"><div><h1>经营分析</h1><p>本月已完成订单与结算对照。</p></div><span class="date" id="analysisMonth"></span></div><div class="settlement-reconciliation" id="settlementReconciliation"></div><div class="charts"><article class="card chart-card"><h2>近 7 日销售额</h2><p id="salesUnitLabel">单位：元</p><svg class="chart-svg" viewBox="0 0 430 210" role="img" aria-label="本月销售额柱状图"><g id="salesAxis"></g><g id="salesBars"></g></svg></article><article class="card chart-card"><h2>近 7 日销售额分类</h2><p>与柱状图使用同一组已付款及以上订单</p><svg class="chart-svg" viewBox="0 0 220 180" role="img" aria-label="商品分类销售占比饼图"><g id="categoryPie"></g><text id="categoryTotal" x="110" y="86" text-anchor="middle" style="font-size:15px;fill:#273542;font-weight:700">¥0</text><text x="110" y="104" text-anchor="middle">近 7 日销售额</text></svg><div class="legend" id="categoryLegend"></div></article><article class="card chart-card wide"><h2>近 7 日订单趋势</h2><p>每日下单量</p><svg class="chart-svg" viewBox="0 0 780 185" role="img" aria-label="近七日订单趋势折线图"><g id="trendAxis"></g><path id="trendArea" fill="#d9f36d" opacity=".35"/><polyline id="trendLine" fill="none" stroke="#167c63" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g id="trendLabels"></g></svg></article></div></section>
 </main></div>
+<div class="modal-backdrop" id="purchaseModal" hidden>
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
+    <header><h2 id="purchaseModalTitle">采购入库</h2><button type="button" class="close" data-close-purchase aria-label="关闭">×</button></header>
+    <form class="product-form" id="purchaseForm">
+      <div class="field"><label for="purchaseSku">商品 · SKU · 当前在库</label><select id="purchaseSku" name="sku" required></select></div>
+      <div class="field"><label for="purchaseQty">入库数量</label><input id="purchaseQty" name="qty" type="number" min="1" step="1" required placeholder="请输入正整数"></div>
+      <div class="field"><label for="purchaseSupplier">供应商</label><input id="purchaseSupplier" name="supplier" required maxlength="100" placeholder="请输入供应商名称"></div>
+      <div class="field"><label for="purchaseNote">备注</label><input id="purchaseNote" name="note" maxlength="300" placeholder="选填：采购批次、到货说明等"></div>
+      <div class="modal-footer"><button type="button" class="secondary" data-close-purchase>取消</button><button type="submit" class="new">确认入库</button></div>
+    </form>
+  </section>
+</div>
 <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
 <aside class="voice assistant-panel" id="assistantPanel" role="dialog" aria-modal="false" aria-label="小商助手" hidden>
   <div class="card-head"><div><h2>小商 · 语音助手</h2><div class="runtime-metrics" id="runtimeMetrics">本次会话 0 轮对话 / 执行 0 次操作</div></div><div class="panel-actions"><button class="history-open" id="historyOpen" type="button">历史</button><button class="icon-btn" id="assistantMinimize" type="button" aria-label="收起助手"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 12h12"/></svg></button></div></div>
